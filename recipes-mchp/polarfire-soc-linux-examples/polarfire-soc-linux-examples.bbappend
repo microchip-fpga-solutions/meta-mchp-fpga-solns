@@ -1,14 +1,18 @@
-DEPENDS += "cjson"
-
-EXAMPLE_FILES:append:mpfs-icicle-kit-es = "\
-    opcua/icicle-kit \
+RDEPENDS:${PN}-v4l2 += "\
+    media-ctl \
+    fswebcam \
+    v4l-utils \
     "
 
-EXAMPLE_FILES:append:mpfs-video-kit = "\
-    opcua/video-kit \
+PACKAGES += " \
+    ${PN}-v4l2 \
+"
+
+INSANE_SKIP:${PN}-v4l2 += "file-rdeps ldflags debug-files"
+
+EXAMPLE_FILES:append = "\
     multimedia/v4l2 \
-    multimedia/v4l2/auto_enhance_osd/ \
-    japll-pi-controller \
-    tsn \
     "
+
+FILES:${PN}-v4l2 = "/opt/microchip/multimedia/v4l2"
 
