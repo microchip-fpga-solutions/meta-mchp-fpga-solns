@@ -1,4 +1,4 @@
-COMPATIBLE_MACHINE:append:mpfs-video-kit-raw-bayer = "|mpfs-video-kit-raw-bayer"
+COMPATIBLE_MACHINE:append:mpfs-video-kit-all = "|mpfs-video-kit-all"
 
-DT_FILES_PATH:mpfs-video-kit-raw-bayer = "${WORKDIR}/git/mpfs_video"
+DT_FILES_PATH:mpfs-video-kit-all = "${WORKDIR}/git/mpfs_video"
 
