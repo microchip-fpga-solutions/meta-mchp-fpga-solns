@@ -3,7 +3,7 @@ IMAGE_INSTALL:append = "\
     packagegroup-mchp-security \
 "
 
-IMAGE_INSTALL:append:mpfs-video-kit-h264  = " \
+IMAGE_INSTALL:append:mpfs-video-kit-h264:mpfs-video-kit-h264-mm  = " \
     ffmpeg \
     apache2 \
     php \
