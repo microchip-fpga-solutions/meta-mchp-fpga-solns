@@ -1,1 +1,1 @@
-PACKAGECONFIG:append:mpfs-video-kit = " apache2"
+PACKAGECONFIG:append:mpfs-video-kit-httpd-all = " apache2"

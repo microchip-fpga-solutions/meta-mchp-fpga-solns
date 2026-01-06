@@ -1,7 +1,7 @@
 # Finalize sudo accesses for AUTHORIZED_USER_NAME
 AUTHORIZED_USER_NAME ?= "daemon"
 
-do_install:append:mpfs-video-kit () {
+do_install:append:mpfs-video-kit-httpd-all () {
     # Add sudo accesses for user.
     install -d -m 0710 "${D}/etc/sudoers.d"
 
@@ -18,5 +18,5 @@ do_install:append:mpfs-video-kit () {
     chmod 0644 "${D}/etc/sudoers.d/0001_${AUTHORIZED_USER_NAME}"
 }
 
-FILES_${PN}:mpfs-video-kit +=  "/etc/sudoers.d \
+FILES_${PN}:mpfs-video-kit-httpd-all +=  "/etc/sudoers.d \
                /etc/sudoers.d/0001_${AUTHORIZED_USER_NAME}"
