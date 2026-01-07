@@ -18,5 +18,5 @@ v4l2-ctl -d /dev/video0 --set-ctrl=vertical_blanking=1170
 v4l2-ctl -d /dev/video0 --set-ctrl=analogue_gain=80
 v4l2-ctl -d /dev/video0 --set-ctrl=osd_color=0x000
 v4l2-ctl -d /dev/video0 --set-ctrl=osd_enable=1
-/opt/microchip/multimedia/v4l2/auto_enhance_osd/auto-enhance-osd /dev/video0 0 1 > /dev/null  &
+/opt/microchip/multimedia/auto-enhance-osd/auto-enhance-osd /dev/video0 0 1 > /dev/null  &
 
