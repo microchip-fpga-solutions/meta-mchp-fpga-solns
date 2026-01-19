@@ -12,3 +12,7 @@ SRC_URI:append:mpfs-video-kit-h264-mm = " \
 	file://mpfs-v4l2-h264-mm.cfg \
 "
 
+SRC_URI:append:mpfs-video-kit-tsn = " \
+	file://mpfs-tsn.cfg \
+"
+

@@ -15,5 +15,5 @@ BBLAYERS ?= " \
   ##OEROOT##/../meta-mchp/meta-mchp-common/ \
   ##OEROOT##/../meta-mchp/meta-mchp-polarfire-soc/meta-mchp-polarfire-soc-bsp \
   ##OEROOT##/../meta-mchp/meta-mchp-polarfire-soc/meta-mchp-polarfire-soc-community \
-  ##OEROOT##/../meta-mpfs-solutions \
+  ##OEROOT##/../meta-mchp-fpga-soln \
   "
