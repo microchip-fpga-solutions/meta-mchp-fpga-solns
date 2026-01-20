@@ -9,6 +9,10 @@ PACKAGES = " \
     packagegroup-mchp-h264 \
 "
 
+RDEPENDS:packagegroup-mchp-multimedia = "\
+    ${@bb.utils.contains("LICENSE_FLAGS_ACCEPTED", "commercial", "ffmpeg", "", d)} \
+"
+
 RDEPENDS:packagegroup-mchp-h264 = "\
     ffmpeg \
     apache2 \
