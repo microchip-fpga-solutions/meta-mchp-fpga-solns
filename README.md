@@ -1,4 +1,23 @@
-# meta-mpfs-fpga-soln
+# Microchip PolarFire SoC FPGA Solutions Layer
+
+## Table of Contents
+
+- [Table of Contents](#table-of-contents)
+- [Description](#description)
+- [Supported machines](#supported-machines)
+- [Image Targets](#image-targets)
+- [Build Instructions](#build-instructions)
+- [Build for Different Machines](#build-for-machines)
+- [Update Yocto Image on MPFS Kit](#update-yocto-image)
+- [To program the MPFS Kit](#update-job-files)
+- [Running Demo Applications](#running-demos)
+- [Host PC setup for Yocto](#dependencies)
+- [Additional Reading](#additional-reading)
+- [Licensing](#licensing)
+- [Layer Dependencies](#layer-dependencies)
+
+<a name="description"></a>
+## Description
 
 - **meta-mpfs-fpga-soln**: layer containing recipes that extend and supplement the meta-mchp layer. These include additional applications and demos to demonstrate PolarFire SoC solutions.
 
@@ -6,16 +25,17 @@ The complete User Guide for MPFS-VIDEO-KIT development platform, containing boar
 
 - [MPFS-VIDEO-KIT](https://mi-v-ecosystem.github.io/redirects/boards-mpfs-sev-kit-sev-kit-user-guide) (PolarFire SoC Video Kit)
 
+<a name="supported-machines"></a>
 ## Supported machines
 
 | `MACHINE`                           | Board Name, Solution                     | Description                                                           |
 | ------------------------------------| -----------------------------------------|-----------------------------------------------------------------------|
 | `MACHINE=mpfs-video-kit-h264`       | MPFS-VIDEO-KIT, H264 Video solution      | PolarFire SoC Video Kit H.264 Demo                                    |
-| `MACHINE=mpfs-video-kit-h264-mm`    | MPFS-VIDEO-KIT, H264 Modular solution    | PolarFire SoC Video Kit H.264 Modular Pipeline Demo     		 |
+| `MACHINE=mpfs-video-kit-h264-mm`    | MPFS-VIDEO-KIT, H264 Modular solution    | PolarFire SoC Video Kit H.264 Modular Pipeline Demo                   |
 | `MACHINE=mpfs-video-kit-raw-bayer`  | MPFS-VIDEO-KIT, Bayer Pipeline solution  | PolarFire SoC Video Kit Frame Capture Examples Scripts                |
 | `MACHINE=mpfs-video-kit-tsn`        | MPFS-VIDEO-KIT, TSN solution             | PolarFire SoC Video Kit TSN Demo                                      |
 
-
+<a name="image-targets"></a>
 ## Image Targets
 
 The table below describes some custom Microchip image targets that can be used to run various demos, as well as recommended
@@ -26,38 +46,107 @@ standard OpenEmbedded image targets. For additional standard OpenEmbedded images
 | ----------------------------- | ------------------------------------------------------------------------------------------------------|
 | `mchp-base-image`             | A Microchip base image with standard Linux utilities, as well as some Microchip apps and examples     |
 
-
+<a name="build-instructions"></a>
 ## Build Instructions
 
 Before continuing, ensure that the prerequisite packages are present on your system. Please see the [Host PC setup for Yocto section](#Dependencies) for further details.
 
 ### Create the Workspace
 
-repo init -u https://bitbucket.microchip.com/scm/fpga_pfsoc_sev_solutions/meta-mchp-fpga-soln-manifest -b tsn -m default.xml
+Create an empty directory to hold the workspace:
 
-repo sync
+  ```bash
+  mkdir yocto-dev
+  cd yocto-dev
+  ```
 
-export TEMPLATECONF=${TEMPLATECONF:-../meta-mchp-fpga-soln/conf/templates/default}
+Use the repo tool to fetch all the required repositories
 
-source openembedded-core/oe-init-build-env
+> Make sure to install the [repo](https://gerrit.googlesource.com/git-repo/+/HEAD/README.md) utility first.
 
-# To build WIC for H264 solution
+  ```bash
+  repo init -u https://github.com/microchip-fpga-solutions/meta-mchp-fpga-soln-manifest.git -b <branch> -m default.xml
+  ```
 
+Replace `<branch>` with the Yocto release branch and the manifest required. For example:
+
+  ```bash
+  repo init -u https://github.com/microchip-fpga-solutions/meta-mchp-fpga-soln-manifest.git -b scarthgap -m default.xml
+  ```
+
+Fetch all the required repositories using the following repo command:
+
+  ```bash
+  repo sync
+  ```
+
+Set the `TEMPLATECONF` environment variable to point to the appropriate configuration template before initializing the build environment:
+
+  ```bash
+  export TEMPLATECONF=${TEMPLATECONF:-../meta-mchp-fpga-soln/conf/templates/default}
+  ```
+
+Then initialize the Yocto build environment:
+
+  ```bash
+  source openembedded-core/oe-init-build-env
+  ```
+
+<a name="build-for-machines"></a>
+## Build for Different Machines
+
+### To build WIC for H264 solution
+
+```bash
 MACHINE=mpfs-video-kit-h264 bitbake mchp-base-image  
+```
 
-# To build WIC for H264 MM solution
+### To build WIC for H264 MM solution
 
+```bash
 MACHINE=mpfs-video-kit-h264-mm bitbake mchp-base-image  
+```
 
-# To build WIC for Bayer modular pipeline  solution
+### To build WIC for Bayer modular pipeline  solution
 
+```bash
 MACHINE=mpfs-video-kit-raw-bayer bitbake mchp-base-image  
+```
 
-# To build WIC for TSN solution
+### To build WIC for TSN solution
 
+```bash
 MACHINE=mpfs-video-kit-tsn bitbake mchp-base-image  
+```
 
-<a name="Dependencies"></a>
+<a name="update-yocto-image"></a>
+## Update Yocto Image on MPFS Kit
+
+- [Updating Linux in MPFS kit](https://github.com/polarfire-soc/polarfire-soc-documentation/blob/master/reference-designs-fpga-and-development-kits/updating-linux-in-mpfs-kit.md)
+
+<a name="update-job-files"></a>
+## To program the MPFS Kit
+
+- [H264 Programming Job File](https://github.com/polarfire-soc/polarfire-soc-video-kit-reference-design/releases/download/v2024.06/MPFS_VIDEO_KIT_BASE_DESIGN_2024_06.zip)
+
+- [H264 MM Programming Job File](https://github.com/polarfire-soc/polarfire-soc-video-kit-reference-design/releases/download/v2024.06/MPFS_VIDEO_KIT_H264_MM_DESIGN_2024_06.zip)
+
+- [Raw Bayer Programming Job File](https://github.com/polarfire-soc/polarfire-soc-video-kit-reference-design/releases/download/v2024.06/MPFS_VIDEO_KIT_RAW_BAYER_DESIGN_2024_06.zip)
+
+- [TSN Programming Job File](https://github.com/microchip-fpga-solutions/mpfs250-video-kit-tsn/releases)
+
+<a name="running-demos"></a>
+## Running Demo Applications
+
+- [Running H264 Demo](https://github.com/polarfire-soc/polarfire-soc-documentation/blob/master/applications-and-demos/mpfs-video-kit-h264-demo.md)
+
+- [Running H264 MM Demo](https://github.com/polarfire-soc/polarfire-soc-documentation/blob/master/applications-and-demos/mpfs-video-kit-h264-modular-pipeline-demo.md)
+
+- [Raw Bayer demo](https://github.com/polarfire-soc/polarfire-soc-linux-examples/tree/master/multimedia/v4l2#polarfire-soc-video-kit-frame-capture-examples-scripts)
+
+- [Running TSN Demo](https://github.com/microchip-fpga-solutions/mpfs250-video-kit-tsn?tab=readme-ov-file#instructions-to-run-the-demo-on-linux)
+
+<a name="dependencies"></a>
 ## Host PC setup for Yocto
 
 ### Yocto Dependencies
@@ -71,12 +160,10 @@ The BSP uses the Yocto release Scarthgap (Revision 5.0.3) (Released August 2024)
 
 Detailed instructions for various distributions can be found in the ["Required Packages for the Build Host"](https://docs.yoctoproject.org/5.0.3/ref-manual/system-requirements.html#required-packages-for-the-build-host) section in the Yocto Project Reference Manual.
 
-```bash
-**Note: Some extra packages are requried to support the Yocto 5.0.3 Release (codename scarthgap) compared to the prior release.**
-```
+**Note: Some extra packages are required to support the Yocto 5.0.3 Release (codename Scarthgap) compared to the prior release.**
 
 <a name="OtherDeps"></a>
-### Other Dependencies
+## Other Dependencies
 
 For Ubuntu 18.04 (or newer) install python3-distutils:
 
@@ -90,6 +177,7 @@ You can install the bmap-tools package using the following command:
 sudo apt-get install bmap-tools
 ```
 
+<a name="additional-reading"></a>
 ## Additional Reading
 
 [Yocto Overview Manual](https://docs.yoctoproject.org/overview-manual/index.html)
@@ -100,6 +188,27 @@ sudo apt-get install bmap-tools
 
 [Yocto Flashing images using bmaptool](https://www.yoctoproject.org/docs/current/mega-manual/mega-manual.html#flashing-images-using-bmaptool)
 
+<a name="layer-dependencies"></a>
+## Layer Dependencies
+
+This layer depends on the following layers:
+
+```text
+- openembedded-core
+  - URI: git://git.openembedded.org/openembedded-core
+  - Layers: meta
+```
+
+```text
+- meta-mchp
+  - URI: https://github.com/linux4microchip/meta-mchp
+  - Layers: meta-mchp
+```
+
+For information on the specific revisions used, refer to the
+[meta-mchp-fpga-soln-manifest](https://github.com/microchip-fpga-solutions/meta-mchp-fpga-soln-manifest) repository.
+
+<a name="licensing"></a>
 ## Licensing
 
 This project is licensed under the terms of the MIT license (please see LICENSE file in this directory for further details).
@@ -107,5 +216,15 @@ By using the PolarFire SoC Yocto BSP layer in this repository, the user agrees t
 The user also acknowledges that it's their responsibility to make sure they hold the right to use code protected by commercial agreements, whether the commercially protected packages are selected by Microchips' PolarFire SoC BSPs or by them.
 Finally, the user acknowledges that it's their responsibility to make sure they hold the right to copy, use, modify, and re-distribute the intellectual property offered by this collection of meta-layers.
 
-## Known issues
+## Contributing
 
+If you want to contribute changes, you can send Github pull requests at
+**<https://github.com/microchip-fpga-solutions/meta-mchp-fpga-soln/pulls>**.
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for additional information about
+contribution guidelines.
+
+## Maintainers
+
+- Vattipalli Praveen <praveen.kumar@microchip.com>
+- Shravan Chippa <shravan.chippa@microchip.com>
