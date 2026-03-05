@@ -1,16 +1,18 @@
 # Microchip PolarFire SoC FPGA Solutions Layer
 
+This repository provides an Yocto layer to include applications and demos, which demonstrate reference solutions on Microchip's PolarFire SoC FPGA devices. This layer containing recipes that extend and supplement the [meta-mchp](https://github.com/linux4microchip/meta-mchp) layer.
+
 ## Table of Contents
 
 - [Table of Contents](#table-of-contents)
 - [Description](#description)
-- [Supported machines](#supported-machines)
+- [Supported Machine Targets](#supported-machines)
 - [Image Targets](#image-targets)
 - [Build Instructions](#build-instructions)
 - [Build for Different Machines](#build-for-machines)
+- [Find the image](#find-the-image)
 - [Update Yocto Image on MPFS Kit](#update-yocto-image)
-- [To program the MPFS Kit](#update-job-files)
-- [Running Demo Applications](#running-demos)
+- [Updating Design and Running the Demo](#update-job-files)
 - [Host PC setup for Yocto](#dependencies)
 - [Additional Reading](#additional-reading)
 - [Licensing](#licensing)
@@ -19,14 +21,14 @@
 <a name="description"></a>
 ## Description
 
-- **meta-mpfs-fpga-soln**: layer containing recipes that extend and supplement the meta-mchp layer. These include additional applications and demos to demonstrate PolarFire SoC solutions.
-
-The complete User Guide for MPFS-VIDEO-KIT development platform, containing board and boot instructions, are available below:
+This repository supports the following Devices:
 
 - [MPFS-VIDEO-KIT](https://mi-v-ecosystem.github.io/redirects/boards-mpfs-sev-kit-sev-kit-user-guide) (PolarFire SoC Video Kit)
 
 <a name="supported-machines"></a>
-## Supported machines
+## Supported Machine Targets
+
+The below table lists the machines which correspond to the various solutions:
 
 | `MACHINE`                           | Board Name, Solution                     | Description                                                           |
 | ------------------------------------| -----------------------------------------|-----------------------------------------------------------------------|
@@ -119,39 +121,45 @@ MACHINE=mpfs-video-kit-raw-bayer bitbake mchp-base-image
 MACHINE=mpfs-video-kit-tsn bitbake mchp-base-image  
 ```
 
+<a name="find-the-image"></a>
+## Find the Image:
+
+On successful build, the disk image (a `.wic` file) would be generated in `yocto-dev/build/tmp-glibc/deploy/images/<MACHINE>/`.  
+Example:  
+`yocto-dev/build/tmp-glibc/deploy/images/mpfs-video-kit-tsn/mchp-base-image-mpfs-video-kit-tsn.rootfs.wic`
+
 <a name="update-yocto-image"></a>
 ## Update Yocto Image on MPFS Kit
 
 - [Updating Linux in MPFS kit](https://github.com/polarfire-soc/polarfire-soc-documentation/blob/master/reference-designs-fpga-and-development-kits/updating-linux-in-mpfs-kit.md)
 
 <a name="update-job-files"></a>
-## To program the MPFS Kit
+## Updating Design and Running the Demo
 
-- [H264 Programming Job File](https://github.com/polarfire-soc/polarfire-soc-video-kit-reference-design/releases/download/v2024.06/MPFS_VIDEO_KIT_BASE_DESIGN_2024_06.zip)
+Following table provides links to the Design files and the documentation for running the Demo's corresponding to the solutions:
 
-- [H264 MM Programming Job File](https://github.com/polarfire-soc/polarfire-soc-video-kit-reference-design/releases/download/v2024.06/MPFS_VIDEO_KIT_H264_MM_DESIGN_2024_06.zip)
+| Design                                              | Running Demo Applications                    |
+| -------------------------------------------------- | ---------------------------------------------|
+| [H264 Programming Job File][1]                     | [Running H264 Demo][2]                       |
+| [H264 MM Programming Job File][3]                  | [Running H264 MM Demo][4]                    |
+| [Raw Bayer Programming Job File][5]                | [Raw Bayer demo][6]                          |
+| [TSN Programming Job File][7]                      | [Running TSN Demo][8]                        |
 
-- [Raw Bayer Programming Job File](https://github.com/polarfire-soc/polarfire-soc-video-kit-reference-design/releases/download/v2024.06/MPFS_VIDEO_KIT_RAW_BAYER_DESIGN_2024_06.zip)
-
-- [TSN Programming Job File](https://github.com/microchip-fpga-solutions/mpfs250-video-kit-tsn/releases)
-
-<a name="running-demos"></a>
-## Running Demo Applications
-
-- [Running H264 Demo](https://github.com/polarfire-soc/polarfire-soc-documentation/blob/master/applications-and-demos/mpfs-video-kit-h264-demo.md)
-
-- [Running H264 MM Demo](https://github.com/polarfire-soc/polarfire-soc-documentation/blob/master/applications-and-demos/mpfs-video-kit-h264-modular-pipeline-demo.md)
-
-- [Raw Bayer demo](https://github.com/polarfire-soc/polarfire-soc-linux-examples/tree/master/multimedia/v4l2#polarfire-soc-video-kit-frame-capture-examples-scripts)
-
-- [Running TSN Demo](https://github.com/microchip-fpga-solutions/mpfs250-video-kit-tsn?tab=readme-ov-file#instructions-to-run-the-demo-on-linux)
+[1]: https://github.com/polarfire-soc/polarfire-soc-video-kit-reference-design/releases/download/v2024.06/MPFS_VIDEO_KIT_BASE_DESIGN_2024_06.zip
+[2]: https://github.com/polarfire-soc/polarfire-soc-documentation/blob/master/applications-and-demos/mpfs-video-kit-h264-demo.md
+[3]: https://github.com/polarfire-soc/polarfire-soc-video-kit-reference-design/releases/download/v2024.06/MPFS_VIDEO_KIT_H264_MM_DESIGN_2024_06.zip
+[4]: https://github.com/polarfire-soc/polarfire-soc-documentation/blob/master/applications-and-demos/mpfs-video-kit-h264-modular-pipeline-demo.md
+[5]: https://github.com/polarfire-soc/polarfire-soc-video-kit-reference-design/releases/download/v2024.06/MPFS_VIDEO_KIT_RAW_BAYER_DESIGN_2024_06.zip
+[6]: https://github.com/polarfire-soc/polarfire-soc-linux-examples/tree/master/multimedia/v4l2#polarfire-soc-video-kit-frame-capture-examples-scripts
+[7]: https://github.com/microchip-fpga-solutions/mpfs250-video-kit-tsn/releases
+[8]: https://github.com/microchip-fpga-solutions/mpfs250-video-kit-tsn?tab=readme-ov-file#instructions-to-run-the-demo-on-linux
 
 <a name="dependencies"></a>
 ## Host PC setup for Yocto
 
 ### Yocto Dependencies
 
-This document assumes you are running on a modern Linux system. The process documented here was tested using Ubuntu 18.04 LTS.
+This document assumes you are running on a modern Linux system. The process documented here was tested using Ubuntu  22.04 LTS.
 It should also work with other Linux distributions if the equivalent prerequisite packages are installed.
 
 The BSP uses the Yocto release Scarthgap (Revision 5.0.3) (Released August 2024).
@@ -163,9 +171,9 @@ Detailed instructions for various distributions can be found in the ["Required P
 **Note: Some extra packages are required to support the Yocto 5.0.3 Release (codename Scarthgap) compared to the prior release.**
 
 <a name="OtherDeps"></a>
-## Other Dependencies
+### Other Dependencies
 
-For Ubuntu 18.04 (or newer) install python3-distutils:
+For Ubuntu 22.04 (or newer) install python3-distutils:
 
 ```bash
 sudo apt install python3-distutils
@@ -223,8 +231,3 @@ If you want to contribute changes, you can send Github pull requests at
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for additional information about
 contribution guidelines.
-
-## Maintainers
-
-- Vattipalli Praveen <praveen.kumar@microchip.com>
-- Shravan Chippa <shravan.chippa@microchip.com>
