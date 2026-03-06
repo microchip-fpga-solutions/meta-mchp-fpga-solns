@@ -67,13 +67,13 @@ Use the repo tool to fetch all the required repositories
 > Make sure to install the [repo](https://gerrit.googlesource.com/git-repo/+/HEAD/README.md) utility first.
 
   ```bash
-  repo init -u https://github.com/microchip-fpga-solutions/meta-mchp-fpga-soln-manifest.git -b <branch> -m default.xml
+  repo init -u https://github.com/microchip-fpga-solutions/meta-mchp-fpga-solns-manifest.git -b <branch> -m default.xml
   ```
 
 Replace `<branch>` with the Yocto release branch and the manifest required. For example:
 
   ```bash
-  repo init -u https://github.com/microchip-fpga-solutions/meta-mchp-fpga-soln-manifest.git -b scarthgap -m default.xml
+  repo init -u https://github.com/microchip-fpga-solutions/meta-mchp-fpga-solns-manifest.git -b scarthgap -m default.xml
   ```
 
 Fetch all the required repositories using the following repo command:
@@ -85,7 +85,7 @@ Fetch all the required repositories using the following repo command:
 Set the `TEMPLATECONF` environment variable to point to the appropriate configuration template before initializing the build environment:
 
   ```bash
-  export TEMPLATECONF=${TEMPLATECONF:-../meta-mchp-fpga-soln/conf/templates/default}
+  export TEMPLATECONF=${TEMPLATECONF:-../meta-mchp-fpga-solns/conf/templates/default}
   ```
 
 Then initialize the Yocto build environment:
@@ -214,7 +214,7 @@ This layer depends on the following layers:
 ```
 
 For information on the specific revisions used, refer to the
-[meta-mchp-fpga-soln-manifest](https://github.com/microchip-fpga-solutions/meta-mchp-fpga-soln-manifest) repository.
+[meta-mchp-fpga-solns-manifest](https://github.com/microchip-fpga-solutions/meta-mchp-fpga-solns-manifest) repository.
 
 <a name="licensing"></a>
 ## Licensing
@@ -227,7 +227,7 @@ Finally, the user acknowledges that it's their responsibility to make sure they 
 ## Contributing
 
 If you want to contribute changes, you can send Github pull requests at
-**<https://github.com/microchip-fpga-solutions/meta-mchp-fpga-soln/pulls>**.
+**<https://github.com/microchip-fpga-solutions/meta-mchp-fpga-solns/pulls>**.
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for additional information about
 contribution guidelines.
