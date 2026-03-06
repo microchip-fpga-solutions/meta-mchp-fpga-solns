@@ -6,17 +6,17 @@ This repository provides an Yocto layer to include applications and demos, which
 
 - [Table of Contents](#table-of-contents)
 - [Description](#description)
+- [Layer Dependencies](#layer-dependencies)
 - [Supported Machine Targets](#supported-machines)
 - [Image Targets](#image-targets)
 - [Build Instructions](#build-instructions)
 - [Build for Different Machines](#build-for-machines)
-- [Find the image](#find-the-image)
-- [Update Yocto Image on MPFS Kit](#update-yocto-image)
+- [Finding the image](#find-the-image)
+- [Updating Yocto Image](#update-yocto-image)
 - [Updating Design and Running the Demo](#update-job-files)
 - [Host PC setup for Yocto](#dependencies)
 - [Additional Reading](#additional-reading)
 - [Licensing](#licensing)
-- [Layer Dependencies](#layer-dependencies)
 
 <a name="description"></a>
 ## Description
@@ -25,26 +25,45 @@ This repository supports the following Devices:
 
 - [MPFS-VIDEO-KIT](https://mi-v-ecosystem.github.io/redirects/boards-mpfs-sev-kit-sev-kit-user-guide) (PolarFire SoC Video Kit)
 
+<a name="layer-dependencies"></a>
+## Layer Dependencies
+
+This layer depends on the following layers:
+
+```text
+- openembedded-core
+  - URI: git://git.openembedded.org/openembedded-core
+  - Layers: meta
+```
+
+```text
+- meta-mchp
+  - URI: https://github.com/linux4microchip/meta-mchp
+  - Layers: meta-mchp
+```
+
+For information on the specific revisions used, refer to the
+[meta-mchp-fpga-solns-manifest](https://github.com/microchip-fpga-solutions/meta-mchp-fpga-solns-manifest) repository.
+
 <a name="supported-machines"></a>
 ## Supported Machine Targets
 
 The below table lists the machines which correspond to the various solutions:
 
-| `MACHINE`                           | Board Name, Solution                     | Description                                                           |
-| ------------------------------------| -----------------------------------------|-----------------------------------------------------------------------|
-| `MACHINE=mpfs-video-kit-h264`       | MPFS-VIDEO-KIT, H264 Video solution      | PolarFire SoC Video Kit H.264 Demo                                    |
-| `MACHINE=mpfs-video-kit-h264-mm`    | MPFS-VIDEO-KIT, H264 Modular solution    | PolarFire SoC Video Kit H.264 Modular Pipeline Demo                   |
-| `MACHINE=mpfs-video-kit-raw-bayer`  | MPFS-VIDEO-KIT, Bayer Pipeline solution  | PolarFire SoC Video Kit Frame Capture Examples Scripts                |
-| `MACHINE=mpfs-video-kit-tsn`        | MPFS-VIDEO-KIT, TSN solution             | PolarFire SoC Video Kit TSN Demo                                      |
+| `MACHINE`                           | Board Name                     | Solution                                      |
+| ------------------------------------| -------------------------------|-----------------------------------------------|
+| `MACHINE=mpfs-video-kit-h264`       | MPFS-VIDEO-KIT                 | H.264                                         |
+| `MACHINE=mpfs-video-kit-h264-mm`    | MPFS-VIDEO-KIT                 | H.264 Modular                                 |
+| `MACHINE=mpfs-video-kit-raw-bayer`  | MPFS-VIDEO-KIT                 | Raw bayer                                     |
+| `MACHINE=mpfs-video-kit-tsn`        | MPFS-VIDEO-KIT                 | TSN                                           |
 
 <a name="image-targets"></a>
 ## Image Targets
 
-The table below describes some custom Microchip image targets that can be used to run various demos, as well as recommended
-standard OpenEmbedded image targets. For additional standard OpenEmbedded images, please refer to the
+The table below describes some custom Microchip image targets that can be used to run various demos. For additional standard OpenEmbedded images, please refer to the
 [OpenEmbedded documentation](https://docs.yoctoproject.org/dev/ref-manual/images.html#images).
 
-| `MACHINE`                     | Description                                                                                           |
+| `IMAGE`                       | Description                                                                                           |
 | ----------------------------- | ------------------------------------------------------------------------------------------------------|
 | `mchp-base-image`             | A Microchip base image with standard Linux utilities, as well as some Microchip apps and examples     |
 
@@ -97,39 +116,27 @@ Then initialize the Yocto build environment:
 <a name="build-for-machines"></a>
 ## Build for Different Machines
 
-### To build WIC for H264 solution
+Use the following build command depending on the required solution (i.e, machine):
 
 ```bash
-MACHINE=mpfs-video-kit-h264 bitbake mchp-base-image  
+MACHINE=<supported machine>  bitbake <image target>
 ```
 
-### To build WIC for H264 MM solution
-
-```bash
-MACHINE=mpfs-video-kit-h264-mm bitbake mchp-base-image  
-```
-
-### To build WIC for Bayer modular pipeline  solution
-
-```bash
-MACHINE=mpfs-video-kit-raw-bayer bitbake mchp-base-image  
-```
-
-### To build WIC for TSN solution
+Example To build WIC for TSN solution:
 
 ```bash
 MACHINE=mpfs-video-kit-tsn bitbake mchp-base-image  
 ```
 
 <a name="find-the-image"></a>
-## Find the Image:
+## Finding the Image
 
 On successful build, the disk image (a `.wic` file) would be generated in `yocto-dev/build/tmp-glibc/deploy/images/<MACHINE>/`.  
 Example:  
 `yocto-dev/build/tmp-glibc/deploy/images/mpfs-video-kit-tsn/mchp-base-image-mpfs-video-kit-tsn.rootfs.wic`
 
 <a name="update-yocto-image"></a>
-## Update Yocto Image on MPFS Kit
+## Updating Yocto Image
 
 - [Updating Linux in MPFS kit](https://github.com/polarfire-soc/polarfire-soc-documentation/blob/master/reference-designs-fpga-and-development-kits/updating-linux-in-mpfs-kit.md)
 
@@ -153,6 +160,8 @@ Following table provides links to the Design files and the documentation for run
 [6]: https://github.com/polarfire-soc/polarfire-soc-linux-examples/tree/master/multimedia/v4l2#polarfire-soc-video-kit-frame-capture-examples-scripts
 [7]: https://github.com/microchip-fpga-solutions/mpfs250-video-kit-tsn/releases
 [8]: https://github.com/microchip-fpga-solutions/mpfs250-video-kit-tsn?tab=readme-ov-file#instructions-to-run-the-demo-on-linux
+
+For details about design or solution-specific job files, see the latest release notes.
 
 <a name="dependencies"></a>
 ## Host PC setup for Yocto
@@ -195,26 +204,6 @@ sudo apt-get install bmap-tools
 [Yocto Bitbake User Manual](https://docs.yoctoproject.org/bitbake/index.html)
 
 [Yocto Flashing images using bmaptool](https://www.yoctoproject.org/docs/current/mega-manual/mega-manual.html#flashing-images-using-bmaptool)
-
-<a name="layer-dependencies"></a>
-## Layer Dependencies
-
-This layer depends on the following layers:
-
-```text
-- openembedded-core
-  - URI: git://git.openembedded.org/openembedded-core
-  - Layers: meta
-```
-
-```text
-- meta-mchp
-  - URI: https://github.com/linux4microchip/meta-mchp
-  - Layers: meta-mchp
-```
-
-For information on the specific revisions used, refer to the
-[meta-mchp-fpga-solns-manifest](https://github.com/microchip-fpga-solutions/meta-mchp-fpga-solns-manifest) repository.
 
 <a name="licensing"></a>
 ## Licensing

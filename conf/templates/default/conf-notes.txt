@@ -2,24 +2,24 @@
 
 You can now run '[MACHINE=<machine>] bitbake <target>'
 
-Microchip supported machines are:
+Microchip supported machines:
 - PolarFire SoC Video Kit / mpfs-video-kit
 
-Microchip targets are:
+Microchip targets:
     mchp-base-image
 
-Microchip PolarFire SoC Video Kit supported machines/solutions are:
-    mpfs-video-kit-h264 bitbake mchp-base-image
-    mpfs-video-kit-h264-mm bitbake mchp-base-image
-    mpfs-video-kit-raw-bayer bitbake mchp-base-image
-    mpfs-video-kit-tsn bitbake mchp-base-image
+Microchip PolarFire SoC Video Kit supported machines/solutions:
+    mpfs-video-kit-h264
+    mpfs-video-kit-h264-mm
+    mpfs-video-kit-raw-bayer
+    mpfs-video-kit-tsn
 
-Common targets are:
+Common targets:
     core-image-minimal
     core-image-minimal-dev
     core-image-minimal-mtdutils
 
-Other commonly useful commands are:
+Other commonly useful commands:
  - 'devtool' and 'recipetool' handle common recipe tasks
  - 'bitbake-layers' handles common layer tasks
  - 'oe-pkgdata-util' handles common target package tasks
