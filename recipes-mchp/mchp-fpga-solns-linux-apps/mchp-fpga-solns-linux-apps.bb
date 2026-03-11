@@ -16,7 +16,7 @@ RDEPENDS:${PN}-v4l2 += "\
 PV = "1.0+git${SRCPV}"
 
 SRCREV = "6f3acf15dcd080ed776b4b43b1bc411c5b1ee2cf"
-SRC_URI = "git://git@bitbucket.microchip.com/fpga_pfsoc_sev_solutions/mchp-fpga-solns-linux-apps.git;protocol=https;nobranch=1"
+SRC_URI = "git://github.com/microchip-fpga-solutions/mchp-fpga-solns-linux-apps.git;protocol=https;nobranch=1"
 
 S = "${WORKDIR}/git"
 
