@@ -21,3 +21,8 @@ IMAGE_INSTALL:append:mpfs-video-kit-drm = " \
     packagegroup-mchp-drm-gstreamer \
 "
 
+IMAGE_INSTALL:append:mpfs-motor-control-kit = " \
+	polarfire-soc-linux-examples-dt-overlays \
+	polarfire-soc-linux-examples-pdma \
+"
+

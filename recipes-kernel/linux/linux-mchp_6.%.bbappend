@@ -24,3 +24,7 @@ SRC_URI:append:mpfs-video-kit-drm = " \
 	file://mpfs-v4l2-drm.cfg \
 "
 
+SRC_URI:append:mpfs-motor-control-kit = " \
+    file://mpfs_genaric.cfg \
+"
+

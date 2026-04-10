@@ -1,6 +1,10 @@
+FILESEXTRAPATHS:prepend := "${THISDIR}/files:"
+
 COMPATIBLE_MACHINE:append:mpfs-video-kit-all = "|mpfs-video-kit-all"
+COMPATIBLE_MACHINE:append:mpfs-motor-control-kit = "|mpfs-motor-control-kit"
 
 DT_FILES_PATH:mpfs-video-kit-all = "${WORKDIR}/git/mpfs_video"
+DT_FILES_PATH:mpfs-motor-control-kit = "${WORKDIR}/git/mpfs_motor_control"
 
 BRANCH = "linux4microchip-2026.04+fpga"
 SRCREV = "cada2b4b4cee82d84756a131032ed0a55d370e7c"
