@@ -1,0 +1,26 @@
+From a400adfdb07fa11e01fd5dd264dd64c74b97c16e Mon Sep 17 00:00:00 2001
+From: Shravan Chippa <shravan.chippa@microchip.com>
+Date: Fri, 30 Jan 2026 12:28:48 +0530
+Subject: [PATCH] gst: v4l2src: sys: gstv4l2object: min buffer count incresed
+
+Signed-off-by: Shravan Chippa <shravan.chippa@microchip.com>
+---
+ sys/v4l2/gstv4l2object.h | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/sys/v4l2/gstv4l2object.h b/sys/v4l2/gstv4l2object.h
+index 5223cbb..cf51158 100644
+--- a/sys/v4l2/gstv4l2object.h
++++ b/sys/v4l2/gstv4l2object.h
+@@ -47,7 +47,7 @@ typedef struct _GstV4l2ObjectClassHelper GstV4l2ObjectClassHelper;
+     ((GST_VIDEO_INFO_INTERLACE_MODE (&obj->info) == \
+       GST_VIDEO_INTERLACE_MODE_ALTERNATE) ? \
+       /* 2x buffers needed with each field in its own buffer */ \
+-      4 : 2)
++      8 : 4)
+ 
+ /* max frame width/height */
+ #define GST_V4L2_MAX_SIZE (1<<15) /* 2^15 == 32768 */
+-- 
+2.34.1
+

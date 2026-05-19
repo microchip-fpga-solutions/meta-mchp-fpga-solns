@@ -1,0 +1,32 @@
+From c08aa096ece48b1d5b5fb6bc6bc598b760293e00 Mon Sep 17 00:00:00 2001
+From: Shravan Chippa <shravan.chippa@microchip.com>
+Date: Mon, 22 Jun 2026 11:33:03 +0530
+Subject: [PATCH] libegt-change-needle-time-examples-dash-dash.cpp
+
+Signed-off-by: Shravan Chippa <shravan.chippa@microchip.com>
+---
+ examples/dash/dash.cpp | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/examples/dash/dash.cpp b/examples/dash/dash.cpp
+index 5bd2ce9a..2468affa 100644
+--- a/examples/dash/dash.cpp
++++ b/examples/dash/dash.cpp
+@@ -117,11 +117,11 @@ int main(int argc, char** argv)
+ 
+     // pick out the needles
+     auto rpm_needle = create_needle(gauge, *dash_background, "#rpmneedle", "#rpmpoint",
+-                                    0, 6000, -20, 190, std::chrono::seconds(8), animations, egt::easing_bounce);
++                                    0, 6000, -20, 190, std::chrono::seconds(24), animations, egt::easing_bounce);
+     auto mph_needle = create_needle(gauge, *dash_background, "#mphneedle", "#mphpoint",
+-                                    0, 220, -20, 190, std::chrono::seconds(8), animations);
++                                    0, 220, -20, 190, std::chrono::seconds(24), animations, egt::easing_easy_slow);
+     auto fuel_needle = create_needle(gauge, *dash_background, "#fuelneedle", "#fuelpoint",
+-                                     0, 100, 0, 90, std::chrono::seconds(3), animations);
++                                     0, 100, 0, 90, std::chrono::seconds(9), animations);
+ 
+     win.add(gauge);
+ 
+-- 
+2.34.1
+

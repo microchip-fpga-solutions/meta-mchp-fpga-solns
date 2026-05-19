@@ -1,0 +1,40 @@
+From 3f8d15d6bb90ceaf4b4edcc30907d20c24e56229 Mon Sep 17 00:00:00 2001
+From: Shravan Chippa <shravan.chippa@microchip.com>
+Date: Mon, 11 Aug 2025 12:12:57 +0530
+Subject: [PATCH] add-driver-name-mpfs-dpsub-and-argb8888-format
+
+Signed-off-by: Shravan Chippa <shravan.chippa@microchip.com>
+---
+ include/egt/detail/screen/kmsscreen.h | 2 +-
+ src/detail/screen/kmsscreen.cpp       | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/include/egt/detail/screen/kmsscreen.h b/include/egt/detail/screen/kmsscreen.h
+index cb37cb3b..e6deceb7 100644
+--- a/include/egt/detail/screen/kmsscreen.h
++++ b/include/egt/detail/screen/kmsscreen.h
+@@ -47,7 +47,7 @@ public:
+      * @param format Requested format for the screen.
+      */
+     explicit KMSScreen(bool allocate_primary_plane = true,
+-                       PixelFormat format = PixelFormat::rgb565);
++                       PixelFormat format = PixelFormat::argb8888);
+ 
+     KMSScreen(const KMSScreen&) = delete;
+     KMSScreen& operator=(const KMSScreen&) = delete;
+diff --git a/src/detail/screen/kmsscreen.cpp b/src/detail/screen/kmsscreen.cpp
+index b5bd4e27..f019077a 100644
+--- a/src/detail/screen/kmsscreen.cpp
++++ b/src/detail/screen/kmsscreen.cpp
+@@ -71,7 +71,7 @@ KMSScreen::KMSScreen(bool allocate_primary_plane,
+ {
+     detail::info("DRM/KMS Screen ({} buffers)", max_buffers());
+ 
+-    m_fd = drmOpen("atmel-hlcdc", nullptr);
++    m_fd = drmOpen("mpfs-dpsub", nullptr);
+     if (m_fd < 0)
+         throw std::runtime_error("unable to open DRM driver");
+ 
+-- 
+2.34.1
+
