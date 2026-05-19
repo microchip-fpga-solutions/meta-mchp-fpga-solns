@@ -11,6 +11,10 @@ PACKAGES = " \
 "
 
 RDEPENDS:packagegroup-mchp-drm = "\
+    libdrm \
+    libdrm-tests \
+    libegt \
+    egt-samples egt-benchmark \
     v4l-utils \
     fswebcam \
     media-ctl \

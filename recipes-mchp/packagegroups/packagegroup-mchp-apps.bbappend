@@ -1,5 +1,5 @@
 RDEPENDS:packagegroup-mchp-apps:mpfs-video-kit-raw-bayer += "\
-    mchp-fpga-solns-linux-apps-v4l2 \
+    mchp-fpga-solns-linux-apps-raw-bayer-capture \
 "
 
 RDEPENDS:packagegroup-mchp-apps:mpfs-video-kit-h264 += "\
@@ -10,7 +10,7 @@ RDEPENDS:packagegroup-mchp-apps:mpfs-video-kit-h264 += "\
 RDEPENDS:packagegroup-mchp-apps:mpfs-video-kit-h264-mm += "\
     polarfire-soc-linux-examples-dt-overlays \
     polarfire-soc-linux-examples-pdma \
-    mchp-fpga-solns-linux-apps-auto-enhance-osd \
+    mchp-fpga-solns-linux-apps-auto-gain-osd-h264 \
 "
 
 RDEPENDS:packagegroup-mchp-apps:mpfs-video-kit-tsn += "\
@@ -24,5 +24,9 @@ RDEPENDS:packagegroup-mchp-apps:mpfs-video-kit-tsn += "\
 RDEPENDS:packagegroup-mchp-apps:mpfs-video-kit-drm += "\
     polarfire-soc-linux-examples-dt-overlays \
     polarfire-soc-linux-examples-pdma \
+    mchp-fpga-solns-linux-apps-gst-cam-display \
+    mchp-fpga-solns-linux-apps-cam2display-zerocopy \
+    mchp-fpga-solns-linux-apps-rgb-jpeg-capture \
+    mchp-fpga-solns-linux-apps-drm-display-tests \
 "
 
