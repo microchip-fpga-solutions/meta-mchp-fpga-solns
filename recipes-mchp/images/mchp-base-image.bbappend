@@ -15,3 +15,9 @@ IMAGE_INSTALL:append:mpfs-video-kit-tsn = " \
     packagegroup-mchp-tsn \
 "
 
+IMAGE_INSTALL:append:mpfs-video-kit-drm = " \
+    packagegroup-mchp-graphics \
+    packagegroup-mchp-drm \
+    packagegroup-mchp-drm-gstreamer \
+"
+

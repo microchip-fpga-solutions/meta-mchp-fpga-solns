@@ -20,3 +20,9 @@ RDEPENDS:packagegroup-mchp-apps:mpfs-video-kit-tsn += "\
     mchp-fpga-solns-linux-apps-japll-pi-controller \
     mchp-fpga-solns-linux-apps-opcua \
 "
+
+RDEPENDS:packagegroup-mchp-apps:mpfs-video-kit-drm += "\
+    polarfire-soc-linux-examples-dt-overlays \
+    polarfire-soc-linux-examples-pdma \
+"
+
