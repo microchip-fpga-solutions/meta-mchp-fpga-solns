@@ -231,7 +231,6 @@ PACKAGECONFIG:append:pn-qemu-system-native = " sdl"
 #
 #BB_HASHSERVE = "auto"
 #BB_SIGNATURE_HANDLER = "OEEquivHash"
-
 #
 # Memory Resident Bitbake
 #
@@ -271,8 +270,24 @@ INHERIT += "create-spdx"
 SPDX_PRETTY = "1"
 
 # Set systemd as default init manager
-INIT_MANAGER = "systemd"
+INIT_MANAGER ?= "systemd"
 
+# The 32MB PMOD SF3 NOR Flash is too small for latest systemd versions
+# use sysvinit for this machine only. This can be commented for
+# other NOR flashes with larger capacity.
+INIT_MANAGER:mpfs-icicle-kit-nor ?= "sysvinit"
+
+# Remove the default syslog mechanism and use systemd-journald
+VIRTUAL-RUNTIME_syslog = ""
+
+DISTRO="mchp-distro"
+MCHP_FEATURES= "mchpcore mchp-autoresize"
 DISTRO_FEATURES:remove ?= "x11 3g nfc pulseaudio"
 
+MCHP_RELEASE_VERSION="v2026.04"
+MCHP_RELEASE_URL="https://github.com/polarfire-soc/"
+
 LICENSE_FLAGS_ACCEPTED += "commercial"
+
+PACKAGECONFIG:remove:pn-rng-tools = " libjitterentropy"
+PACKAGECONFIG:append:pn-libkcapi = " testapp apps"
