@@ -16,3 +16,7 @@ SRC_URI:append:mpfs-video-kit-tsn = " \
 	file://mpfs-tsn.cfg \
 "
 
+SRC_URI:append:mpfs-video-kit-drm = " \
+	file://mpfs-v4l2-drm.cfg \
+"
+
