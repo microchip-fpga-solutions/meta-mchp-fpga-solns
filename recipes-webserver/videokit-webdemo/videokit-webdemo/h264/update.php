@@ -138,7 +138,7 @@ $pattern = $_REQUEST['pattern'];
 		$v_osd_y = "v4l2-ctl -d /dev/video0 --set-ctrl=osdy_position=0";
 	}
 
-$auto_osd = "/opt/microchip/multimedia/auto-enhance-osd/auto-enhance-osd /dev/video0 ".$e_enhance_state." ".$e_osd_state." & \n";
+$auto_osd = "/opt/microchip/multimedia/auto-gain-osd-h264/auto-enhance-osd /dev/video0 ".$e_enhance_state." ".$e_osd_state." & \n";
 
 $reso = "v4l2-ctl --device /dev/video0 --set-fmt-video=width=".$hreso.",height=".$vreso."\nmedia-ctl -v -V '\"60005000.rgb-scaler\":0 [fmt:RBG888_1X24/1920x1080  crop: (0,0)/".$hvreso." field:none colorspace:srgb]' -d /dev/media0 \nmedia-ctl -v -V '\"60002000.yuv2h264\":0 [fmt:UYVY8_2X8/".$hvreso." field:none colorspace:srgb]' -d /dev/media0 \nmedia-ctl -v -V '\"60007000.generic-video-pipeline-connector\":0 [fmt:RBG888_1X24/".$hvreso." field:none colorspace:srgb]' -d /dev/media0 \nmedia-ctl -v -V '\"60006000.osd\":0 [fmt:RBG888_1X24/".$hvreso." field:none colorspace:srgb]' -d /dev/media0 \n";
 
