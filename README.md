@@ -24,6 +24,7 @@ This repository provides an Yocto layer to include applications and demos, which
 This repository supports the following Devices:
 
 - [MPFS-VIDEO-KIT](https://mi-v-ecosystem.github.io/redirects/boards-mpfs-sev-kit-sev-kit-user-guide) (PolarFire SoC Video Kit)
+- [MPFS-MOTOR-CONTROL-KIT](https://mi-v-ecosystem.github.io) (PolarFire SoC Motor Control Kit)
 
 <a name="layer-dependencies"></a>
 ## Layer Dependencies
@@ -56,6 +57,8 @@ The below table lists the machines which correspond to the various solutions:
 | `MACHINE=mpfs-video-kit-h264-mm`    | MPFS-VIDEO-KIT                 | H.264 Modular                                 |
 | `MACHINE=mpfs-video-kit-raw-bayer`  | MPFS-VIDEO-KIT                 | Raw bayer                                     |
 | `MACHINE=mpfs-video-kit-tsn`        | MPFS-VIDEO-KIT                 | TSN                                           |
+| `MACHINE=mpfs-video-kit-drm`        | MPFS-VIDEO-KIT                 | DRM Display                                   |
+| `MACHINE=mpfs-motor-control-kit`    | MPFS-MOTOR-CONTROL-KIT         | Motor Control                                 |
 
 <a name="image-targets"></a>
 ## Image Targets
