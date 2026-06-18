@@ -4,6 +4,7 @@ You can now run '[MACHINE=<machine>] bitbake <target>'
 
 Microchip supported machines:
 - PolarFire SoC Video Kit / mpfs-video-kit
+- PolarFire SoC Motor Control Kit / mpfs-motor-control-kit
 
 Microchip targets:
     mchp-base-image
@@ -12,7 +13,9 @@ Microchip PolarFire SoC Video Kit supported machines/solutions:
     mpfs-video-kit-h264
     mpfs-video-kit-h264-mm
     mpfs-video-kit-raw-bayer
+    mpfs-video-kit-drm
     mpfs-video-kit-tsn
+    mpfs-motor-control-kit
 
 Common targets:
     core-image-minimal
