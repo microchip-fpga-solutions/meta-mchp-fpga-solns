@@ -76,13 +76,15 @@ do_compile() {
 }
 
 do_install() {
-    install -d ${D}/opt/microchip
-    chmod a+x ${D}/opt/microchip
+    if [ -n "${EXAMPLE_FILES}" ]; then
+        install -d ${D}/opt/microchip
+        chmod a+x ${D}/opt/microchip
 
-    for i in ${EXAMPLE_FILES}; do
-        install -d ${D}/opt/microchip/$(dirname $i)/$(basename $i)
-        cp -rfd ${S}/$i ${D}/opt/microchip/$(dirname $i)
-    done
+        for i in ${EXAMPLE_FILES}; do
+            install -d ${D}/opt/microchip/$(dirname $i)/$(basename $i)
+            cp -rfd ${S}/$i ${D}/opt/microchip/$(dirname $i)
+        done
+    fi
 }
 
 do_install:append:mpfs-video-kit-tsn() {
