@@ -46,9 +46,15 @@ INSANE_SKIP:${PN}-cam2display-zerocopy += "file-rdeps ldflags debug-files"
 INSANE_SKIP:${PN}-rgb-jpeg-capture += "file-rdeps ldflags debug-files"
 INSANE_SKIP:${PN}-drm-display-tests += "file-rdeps ldflags debug-files"
 
-EXAMPLE_FILES:append = "\
+EXAMPLE_FILES:append:mpfs-video-kit-raw-bayer = "\
     multimedia/raw-bayer-capture \
+    "
+
+EXAMPLE_FILES:append:mpfs-video-kit-h264-mm = "\
     multimedia/auto-gain-osd-h264 \
+    "
+
+EXAMPLE_FILES:append:mpfs-video-kit-drm = "\
     multimedia/gst-cam-display \
     multimedia/cam2display-zerocopy \
     multimedia/rgb-jpeg-capture \
