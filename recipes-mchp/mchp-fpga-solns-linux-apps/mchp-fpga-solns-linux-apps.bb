@@ -16,7 +16,7 @@ RDEPENDS:${PN}-raw-bayer-capture += "\
 
 PV = "1.0+git${SRCPV}"
 
-SRCREV = "6f3acf15dcd080ed776b4b43b1bc411c5b1ee2cf"
+SRCREV = "08a0675a2eca23936116e900b91c4eab09bfa19f"
 SRC_URI = "git://github.com/microchip-fpga-solutions/mchp-fpga-solns-linux-apps.git;protocol=https;nobranch=1"
 
 S = "${WORKDIR}/git"
