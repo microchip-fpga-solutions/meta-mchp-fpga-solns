@@ -10,3 +10,7 @@ BRANCH = "next"
 SRCREV = "b76aeb115e731f39403f645d9fa6419bd6b353b2"
 SRC_URI = "git://github.com/microchip-fpga-solutions/dt-overlay4polarfire.git;protocol=https;branch=${BRANCH}"
 
+SRC_URI:append:mpfs-motor-control-kit = "  \
+	file://0001-mpfs_motor_control-test-overlay.patch \
+	"
+

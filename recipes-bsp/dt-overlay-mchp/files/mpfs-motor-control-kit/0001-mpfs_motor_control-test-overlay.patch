@@ -1,0 +1,44 @@
+From 40f5a1f9b8f6c246a730317c3319d8b78b07e7be Mon Sep 17 00:00:00 2001
+From: Shravan Chippa <shravan.chippa@microchip.com>
+Date: Fri, 10 Apr 2026 18:10:08 +0530
+Subject: [PATCH] mpfs_motor_control: test overlay
+
+Signed-off-by: Shravan Chippa <shravan.chippa@microchip.com>
+---
+ mpfs_motor_control/mpfs_motor_control.dtso | 24 ++++++++++++++++++++++
+ 1 file changed, 24 insertions(+)
+ create mode 100644 mpfs_motor_control/mpfs_motor_control.dtso
+
+diff --git a/mpfs_motor_control/mpfs_motor_control.dtso b/mpfs_motor_control/mpfs_motor_control.dtso
+new file mode 100644
+index 0000000..8560a35
+--- /dev/null
++++ b/mpfs_motor_control/mpfs_motor_control.dtso
+@@ -0,0 +1,24 @@
++// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
++/*
++ * Device Tree Overlay For mpfs_motor_control_kit
++ *
++ * Copyright (C) 2026 Microchip Technology Inc. and its subsidiaries.
++ * Author: shrava chippa <shravan.chippa@microchip.com>
++ *
++ */
++
++/dts-v1/;
++/plugin/;
++
++/ {
++        compatible = "microchip,mpfs-motor-control-kit","microchip,mpfs";
++};
++
++&{/} {
++        test_clk: test-clk {
++                compatible = "fixed-clock";
++                #clock-cells = <0>;
++                clock-frequency = <25000000>;
++        };
++};
++
+-- 
+2.34.1
+
