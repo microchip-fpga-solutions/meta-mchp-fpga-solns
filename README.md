@@ -10,6 +10,7 @@ This repository provides an Yocto layer to include applications and demos, which
 - [Supported Machine Targets](#supported-machines)
 - [Image Targets](#image-targets)
 - [Build Instructions](#build-instructions)
+- [Build for Motor Control Kit BLDC](#build-for-motor-control-bldc)
 - [Build for Different Machines](#build-for-machines)
 - [Finding the image](#find-the-image)
 - [Updating Yocto Image](#update-yocto-image)
@@ -25,6 +26,7 @@ This repository supports the following Devices:
 
 - [MPFS-VIDEO-KIT](https://mi-v-ecosystem.github.io/redirects/boards-mpfs-sev-kit-sev-kit-user-guide) (PolarFire SoC Video Kit)
 - [MPFS-MOTOR-CONTROL-KIT](https://mi-v-ecosystem.github.io) (PolarFire SoC Motor Control Kit)
+- [MPFS-MOTOR-CONTROL-KIT-BLDC](https://mi-v-ecosystem.github.io) (PolarFire SoC Motor Control Kit with BLDC)
 
 <a name="layer-dependencies"></a>
 ## Layer Dependencies
@@ -43,6 +45,14 @@ This layer depends on the following layers:
   - Layers: meta-mchp
 ```
 
+For Motor Control Kit BLDC, additional layers are required:
+
+```text
+- meta-ros
+  - URI: https://github.com/ros/meta-ros
+  - Layers: meta-ros-common, meta-ros2, meta-ros2-humble
+```
+
 For information on the specific revisions used, refer to the
 [meta-mchp-fpga-solns-manifest](https://github.com/microchip-fpga-solutions/meta-mchp-fpga-solns-manifest) repository.
 
@@ -59,6 +69,7 @@ The below table lists the machines which correspond to the various solutions:
 | `MACHINE=mpfs-video-kit-tsn`        | MPFS-VIDEO-KIT                 | TSN                                           |
 | `MACHINE=mpfs-video-kit-drm`        | MPFS-VIDEO-KIT                 | DRM Display                                   |
 | `MACHINE=mpfs-motor-control-kit`    | MPFS-MOTOR-CONTROL-KIT         | Motor Control                                 |
+| `MACHINE=mpfs-motor-control-kit-bldc` | MPFS-MOTOR-CONTROL-KIT       | Motor Control BLDC                  |
 
 <a name="image-targets"></a>
 ## Image Targets
@@ -69,6 +80,13 @@ The table below describes some custom Microchip image targets that can be used t
 | `IMAGE`                       | Description                                                                                           |
 | ----------------------------- | ------------------------------------------------------------------------------------------------------|
 | `mchp-base-image`             | A Microchip base image with standard Linux utilities, as well as some Microchip apps and examples     |
+
+### Package Groups for Motor Control Kit BLDC
+
+| Package Group                              | Description                                                    |
+| ------------------------------------------ | -------------------------------------------------------------- |
+| `packagegroup-mchp-motor-control-bldc`     | Motor control BLDC application   |
+| `packagegroup-mchp-motor-control-bldc-vision` | Optional: OpenCV and vision/camera packages            |
 
 <a name="build-instructions"></a>
 ## Build Instructions
@@ -104,7 +122,45 @@ Fetch all the required repositories using the following repo command:
   repo sync
   ```
 
-Set the `TEMPLATECONF` environment variable to point to the appropriate configuration template before initializing the build environment:
+<a name="build-for-motor-control-bldc"></a>
+## Build for Motor Control Kit BLDC
+
+The Motor Control Kit BLDC machine. Use the dedicated `bldc` template:
+
+```bash
+cd yocto-dev
+TEMPLATECONF=../meta-mchp-fpga-solns/conf/templates/bldc source openembedded-core/oe-init-build-env
+```
+
+This will:
+- Set default machine to `mpfs-motor-control-kit-bldc`
+- Include ROS2 layers (meta-ros-common, meta-ros2, meta-ros2-humble)
+- Configure ROS2 Humble distro features
+
+Build the image:
+
+```bash
+bitbake mchp-base-image
+```
+
+### Adding Vision/Camera Support (Optional)
+
+To include OpenCV packages, add to your `local.conf`:
+
+```bash
+IMAGE_INSTALL:append = " packagegroup-mchp-motor-control-bldc-vision"
+```
+
+### Verifying Layers
+
+```bash
+bitbake-layers show-layers | grep -E "ros|mchp-fpga"
+```
+
+<a name="build-for-machines"></a>
+## Build for Other Machines
+
+Set the `TEMPLATECONF` environment variable to point to the default configuration template:
 
   ```bash
   export TEMPLATECONF=${TEMPLATECONF:-../meta-mchp-fpga-solns/conf/templates/default}
@@ -116,9 +172,6 @@ Then initialize the Yocto build environment:
   source openembedded-core/oe-init-build-env
   ```
 
-<a name="build-for-machines"></a>
-## Build for Different Machines
-
 Use the following build command depending on the required solution (i.e, machine):
 
 ```bash
@@ -128,15 +181,18 @@ MACHINE=<supported machine>  bitbake <image target>
 Example To build WIC for TSN solution:
 
 ```bash
-MACHINE=mpfs-video-kit-tsn bitbake mchp-base-image  
+MACHINE=mpfs-video-kit-tsn bitbake mchp-base-image
 ```
 
 <a name="find-the-image"></a>
 ## Finding the Image
 
-On successful build, the disk image (a `.wic` file) would be generated in `yocto-dev/build/tmp-glibc/deploy/images/<MACHINE>/`.  
-Example:  
+On successful build, the disk image (a `.wic` file) would be generated in `yocto-dev/build/tmp-glibc/deploy/images/<MACHINE>/`.
+Example:
 `yocto-dev/build/tmp-glibc/deploy/images/mpfs-video-kit-tsn/mchp-base-image-mpfs-video-kit-tsn.rootfs.wic`
+
+For Motor Control Kit BLDC:
+`yocto-dev/build-bldc/tmp-glibc/deploy/images/mpfs-motor-control-kit-bldc/mchp-base-image-mpfs-motor-control-kit-bldc.rootfs.wic`
 
 <a name="update-yocto-image"></a>
 ## Updating Yocto Image

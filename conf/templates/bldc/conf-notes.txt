@@ -1,0 +1,20 @@
+### Shell environment set up for Motor Control Kit BLDC builds ###
+
+You can now run 'bitbake <target>'
+
+Default machine: mpfs-motor-control-kit-bldc
+
+Microchip targets::
+    mchp-base-image         - Minimal image with motor control
+    core-image-minimal      - Basic image without motor control packages
+
+Microchip PolarFire SoC Kit supported machines/solutions:
+    mpfs-motor-control-kit-bldc
+
+To add vision/camera support, add to local.conf:
+    IMAGE_INSTALL:append = " packagegroup-mchp-motor-control-bldc-vision"
+
+Other commonly useful commands:
+ - 'devtool' and 'recipetool' handle common recipe tasks
+ - 'bitbake-layers' handles common layer tasks
+ - 'oe-pkgdata-util' handles common target package tasks

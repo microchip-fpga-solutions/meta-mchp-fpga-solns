@@ -26,3 +26,7 @@ IMAGE_INSTALL:append:mpfs-motor-control-kit = " \
 	polarfire-soc-linux-examples-pdma \
 "
 
+IMAGE_INSTALL:append:mpfs-motor-control-kit-bldc = " \
+    packagegroup-mchp-motor-control-bldc \
+"
+
