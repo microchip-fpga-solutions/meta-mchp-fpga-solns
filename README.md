@@ -61,15 +61,16 @@ For information on the specific revisions used, refer to the
 
 The below table lists the machines which correspond to the various solutions:
 
-| `MACHINE`                           | Board Name                     | Solution                                      |
-| ------------------------------------| -------------------------------|-----------------------------------------------|
-| `MACHINE=mpfs-video-kit-h264`       | MPFS-VIDEO-KIT                 | H.264                                         |
-| `MACHINE=mpfs-video-kit-h264-mm`    | MPFS-VIDEO-KIT                 | H.264 Modular                                 |
-| `MACHINE=mpfs-video-kit-raw-bayer`  | MPFS-VIDEO-KIT                 | Raw bayer                                     |
-| `MACHINE=mpfs-video-kit-tsn`        | MPFS-VIDEO-KIT                 | TSN                                           |
-| `MACHINE=mpfs-video-kit-drm`        | MPFS-VIDEO-KIT                 | DRM Display                                   |
-| `MACHINE=mpfs-motor-control-kit`    | MPFS-MOTOR-CONTROL-KIT         | Motor Control                                 |
-| `MACHINE=mpfs-motor-control-kit-bldc` | MPFS-MOTOR-CONTROL-KIT       | Motor Control BLDC                  |
+| `MACHINE`                            | Board Name                     | Solution                                      |
+| ------------------------------------ | -------------------------------|-----------------------------------------------|
+| `MACHINE=mpfs-video-kit-h264`        | MPFS-VIDEO-KIT                 | H.264                                         |
+| `MACHINE=mpfs-video-kit-h264-mm`     | MPFS-VIDEO-KIT                 | H.264 Modular                                 |
+| `MACHINE=mpfs-video-kit-raw-bayer`   | MPFS-VIDEO-KIT                 | Raw bayer                                     |
+| `MACHINE=mpfs-video-kit-tsn`         | MPFS-VIDEO-KIT                 | TSN                                           |
+| `MACHINE=mpfs-video-kit-drm`         | MPFS-VIDEO-KIT                 | DRM Display                                   |
+| `MACHINE=mpfs-motor-control-kit`     | MPFS-MOTOR-CONTROL-KIT         | Motor Control                                 |
+| `MACHINE=mpfs-motor-control-kit-bldc`| MPFS-MOTOR-CONTROL-KIT         | Motor Control BLDC                            |
+| `MACHINE=mpfs-motor-control-kit-tsn` | MPFS-MOTOR-CONTROL-KIT         | Motor Control TSN                             |
 
 <a name="image-targets"></a>
 ## Image Targets

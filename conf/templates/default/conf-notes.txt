@@ -16,6 +16,7 @@ Microchip PolarFire SoC Video Kit supported machines/solutions:
     mpfs-video-kit-drm
     mpfs-video-kit-tsn
     mpfs-motor-control-kit
+    mpfs-motor-control-kit-tsn
 
 Common targets:
     core-image-minimal

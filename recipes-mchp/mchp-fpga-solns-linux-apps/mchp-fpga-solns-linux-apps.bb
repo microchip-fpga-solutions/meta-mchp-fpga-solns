@@ -10,9 +10,11 @@ inherit python3-dir systemd
 DEPENDS:append:mpfs-video-kit-tsn = " cjson"
 DEPENDS:append:mpfs-video-kit-drm = " libdrm"
 
-
 # Motor control BLDC dependencies for pybind11 build
 DEPENDS:append:mpfs-motor-control-kit-bldc = " cmake-native python3-pybind11-native python3-native python3-pybind11"
+
+# Motor control TSN dependencies (same pybind11 build for motor-control-bldc)
+DEPENDS:append:mpfs-motor-control-kit-tsn = " cmake-native python3-pybind11-native python3-native python3-pybind11 cjson"
 
 RDEPENDS:${PN}-raw-bayer-capture += "\
     media-ctl \
@@ -25,16 +27,22 @@ RDEPENDS:${PN}-motor-control-bldc += "\
     python3-bokeh \
     "
 
+# Disable systemd packaging by default (no motor control on video-kit machines)
+SYSTEMD_PACKAGES = ""
+
 # Systemd service for motor control module loading
 SYSTEMD_PACKAGES:mpfs-motor-control-kit-bldc = "${PN}-motor-control-bldc"
-SYSTEMD_SERVICE:${PN}-motor-control-bldc = "motor-modules.service"
-SYSTEMD_AUTO_ENABLE:${PN}-motor-control-bldc = "enable"
+SYSTEMD_SERVICE:${PN}-motor-control-bldc:mpfs-motor-control-kit-bldc = "motor-modules.service"
+SYSTEMD_AUTO_ENABLE:${PN}-motor-control-bldc:mpfs-motor-control-kit-bldc = "enable"
 
-
+# Systemd service for motor control module loading (TSN variant)
+SYSTEMD_PACKAGES:mpfs-motor-control-kit-tsn = "${PN}-motor-control-bldc"
+SYSTEMD_SERVICE:${PN}-motor-control-bldc:mpfs-motor-control-kit-tsn = "motor-modules.service"
+SYSTEMD_AUTO_ENABLE:${PN}-motor-control-bldc:mpfs-motor-control-kit-tsn = "enable"
 
 PV = "1.0+git${SRCPV}"
 
-SRCREV = "74cb47f7cbed40364f6a8e2f0281cb819bc6fd09"
+SRCREV = "0ec593e358fdf34778cd688aea91217837e2a0c3"
 SRC_URI = "git://github.com/microchip-fpga-solutions/mchp-fpga-solns-linux-apps.git;protocol=https;nobranch=1"
 
 S = "${WORKDIR}/git"
@@ -92,7 +100,12 @@ EXAMPLE_FILES:append:mpfs-motor-control-kit-bldc = "\
     motor-control-bldc \
     "
 
-
+# Motor control TSN - includes japll-pi-controller, tsn, and motor-control-bldc (no multimedia)
+EXAMPLE_FILES:append:mpfs-motor-control-kit-tsn = "\
+    japll-pi-controller \
+    tsn \
+    motor-control-bldc \
+    "
 
 do_compile() {
   for i in ${EXAMPLE_FILES}; do
@@ -101,8 +114,6 @@ do_compile() {
     fi
   done
 }
-
-
 
 # Compile motor control C++ library with pybind11
 do_compile:append:mpfs-motor-control-kit-bldc() {
@@ -136,7 +147,37 @@ do_compile:append:mpfs-motor-control-kit-bldc() {
     fi
 }
 
+# Compile motor control C++ library with pybind11 (TSN variant)
+do_compile:append:mpfs-motor-control-kit-tsn() {
+    if [ -d ${S}/motor-control-bldc/lib ]; then
+        mkdir -p ${S}/motor-control-bldc/lib/build
+        cd ${S}/motor-control-bldc/lib/build
 
+        # Extract just the compiler binary (CC/CXX include --sysroot which cmake can't parse)
+        REAL_CC=$(echo ${CC} | awk '{print $1}')
+        REAL_CXX=$(echo ${CXX} | awk '{print $1}')
+
+        # Find Python version in sysroot (e.g., python3.12 -> 312)
+        PYTHON_VER=$(ls ${STAGING_INCDIR} | grep -E '^python3\.[0-9]+$' | head -1)
+        PYTHON_VER_NUM=$(echo $PYTHON_VER | sed 's/python//' | tr -d '.')
+
+        cmake .. \
+            -DCMAKE_CXX_COMPILER="$REAL_CXX" \
+            -DCMAKE_C_COMPILER="$REAL_CC" \
+            -DCMAKE_CXX_FLAGS="${CXXFLAGS} -fPIC" \
+            -DCMAKE_C_FLAGS="${CFLAGS} -fPIC" \
+            -DCMAKE_POSITION_INDEPENDENT_CODE=ON \
+            -DCMAKE_SYSROOT="${STAGING_DIR_TARGET}" \
+            -DCMAKE_INSTALL_PREFIX=${prefix} \
+            -DPYTHON_INCLUDE_DIRS="${STAGING_INCDIR}/$PYTHON_VER" \
+            -DPYTHON_LIBRARIES="${STAGING_LIBDIR}/lib${PYTHON_VER}.so" \
+            -DPYTHON_EXECUTABLE="${STAGING_BINDIR_NATIVE}/python3-native/python3" \
+            -DPYTHON_MODULE_EXTENSION=".cpython-${PYTHON_VER_NUM}-riscv64-linux-gnu.so" \
+            -Dpybind11_DIR="${STAGING_LIBDIR}/cmake/pybind11" \
+            -Wno-dev
+        oe_runmake
+    fi
+}
 
 do_install() {
     if [ -n "${EXAMPLE_FILES}" ]; then
@@ -156,6 +197,35 @@ do_install:append:mpfs-video-kit-tsn() {
 
 # Install motor control BLDC files
 do_install:append:mpfs-motor-control-kit-bldc() {
+    # Install Python applications to /opt/microchip/motor-control-bldc
+    install -d ${D}/opt/microchip/motor-control-bldc/app
+    install -m 0755 ${S}/motor-control-bldc/app/gui.py ${D}/opt/microchip/motor-control-bldc/app/
+    install -m 0755 ${S}/motor-control-bldc/app/sub.py ${D}/opt/microchip/motor-control-bldc/app/
+    install -m 0755 ${S}/motor-control-bldc/app/motor_control_startup.sh ${D}/opt/microchip/motor-control-bldc/app/
+
+    # Install Python module (.so file) to Python site-packages
+    install -d ${D}${PYTHON_SITEPACKAGES_DIR}
+    install -m 0755 ${S}/motor-control-bldc/lib/build/motor_lib_py*.so ${D}${PYTHON_SITEPACKAGES_DIR}/
+
+    # Install header files for C++ API access
+    install -d ${D}${includedir}/motor-control
+    install -m 0644 ${S}/motor-control-bldc/lib/motor.h ${D}${includedir}/motor-control/
+    install -m 0644 ${S}/motor-control-bldc/lib/motorclass_def.h ${D}${includedir}/motor-control/
+
+    # Install module loader script
+    install -d ${D}/opt/microchip/motor-control-bldc/scripts
+    install -m 0755 ${S}/motor-control-bldc/scripts/load-motor-modules.sh ${D}/opt/microchip/motor-control-bldc/scripts/
+
+    # Install systemd service
+    install -d ${D}${systemd_system_unitdir}
+    install -m 0644 ${S}/motor-control-bldc/scripts/motor-modules.service ${D}${systemd_system_unitdir}/
+
+    # Remove cmake build artifacts that got copied by base do_install
+    rm -rf ${D}/opt/microchip/motor-control-bldc/lib/build
+}
+
+# Install motor control BLDC files (TSN variant)
+do_install:append:mpfs-motor-control-kit-tsn() {
     # Install Python applications to /opt/microchip/motor-control-bldc
     install -d ${D}/opt/microchip/motor-control-bldc/app
     install -m 0755 ${S}/motor-control-bldc/app/gui.py ${D}/opt/microchip/motor-control-bldc/app/

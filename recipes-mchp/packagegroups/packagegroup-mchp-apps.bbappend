@@ -30,3 +30,9 @@ RDEPENDS:packagegroup-mchp-apps:mpfs-video-kit-drm += "\
     mchp-fpga-solns-linux-apps-drm-display-tests \
 "
 
+RDEPENDS:packagegroup-mchp-apps:mpfs-motor-control-kit-tsn += "\
+    polarfire-soc-linux-examples-dt-overlays \
+    mchp-fpga-solns-linux-apps-tsn \
+    mchp-fpga-solns-linux-apps-japll-pi-controller \
+"
+

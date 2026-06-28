@@ -30,3 +30,7 @@ IMAGE_INSTALL:append:mpfs-motor-control-kit-bldc = " \
     packagegroup-mchp-motor-control-bldc \
 "
 
+IMAGE_INSTALL:append:mpfs-motor-control-kit-tsn = " \
+    packagegroup-mchp-motor-control-tsn \
+"
+

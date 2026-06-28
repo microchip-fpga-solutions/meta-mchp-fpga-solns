@@ -31,3 +31,9 @@ SRC_URI:append:mpfs-motor-control-kit = " \
 SRC_URI:append:mpfs-motor-control-kit-bldc = " \
     file://motor-control.cfg \
 "
+
+SRC_URI:append:mpfs-motor-control-kit-tsn = " \
+    file://motor-control.cfg \
+    file://mpfs_generic.cfg \
+    file://mpfs-tsn.cfg \
+"

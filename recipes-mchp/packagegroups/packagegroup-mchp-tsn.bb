@@ -25,4 +25,8 @@ RDEPENDS:packagegroup-mchp-tsn = "\
     openssl-engines \
     linux-firmware-microchip \
     linuxptp \
+    vim \
+    packagegroup-core-buildessential \
+    cjson \
+    cjson-dev \
 "
