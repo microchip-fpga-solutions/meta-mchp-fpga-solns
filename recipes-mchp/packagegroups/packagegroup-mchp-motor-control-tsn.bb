@@ -44,4 +44,5 @@ RDEPENDS:packagegroup-mchp-motor-control-tsn = "\
     packagegroup-core-buildessential \
     cjson \
     cjson-dev \
+    motor-control-demo \
 "

@@ -1,0 +1,545 @@
+{
+
+"qbvconf": {
+
+"cycletime": 200000000,
+
+"basetimesec": 1695296200,
+
+"basetimensec": 0,
+
+"basetimeadjust": 4,
+
+"rxstreamidtimeout": 31000000,
+
+"gclcount": 4,
+
+"initgatestate": 128,
+
+"priorityenable": true,
+
+"gateenable": true,
+
+"prioqueues": [{
+
+"prioq": 0,
+
+"enable": true,
+
+"streamids": [{
+
+"streamid": 0,
+
+"frer": false,
+
+"enable": true,
+
+"priority_enable": true,
+
+"priority": 1,
+
+"vlanid_enable": true,
+
+"vlanid": 1,
+
+"dstmac_enable": true,
+
+"dstmac": "66:55:44:33:22:11"
+
+},
+
+{
+
+"streamid": 1,
+
+"enable": false,
+
+"frer": false,
+
+"vlanid": 1,
+
+"priority_enable": false,
+
+"priority": 0,
+
+"vlanid_enable": false,
+
+"dstmac_enable": false,
+
+"dstmac": "e0:73:e7:13:ff:11"
+
+}
+
+]
+
+},
+
+{
+
+"prioq": 1,
+
+"enable": true,
+
+"streamids": [{
+
+"streamid": 0,
+
+"frer": false,
+
+"enable": true,
+
+"priority_enable": true,
+
+"priority": 2,
+
+"vlanid_enable": true,
+
+"vlanid": 2,
+
+"dstmac_enable": true,
+
+"dstmac": "CC:BB:AA:99:88:77"
+
+},
+
+{
+
+"streamid": 1,
+
+"frer": false,
+
+"enable": false,
+
+"vlanid": 3,
+
+"priority_enable": false,
+
+"priority": 1,
+
+"vlanid_enable": false,
+
+"dstmac_enable": false,
+
+"dstmac": "e0:73:e7:13:ff:33"
+
+}
+
+]
+
+},
+
+{
+
+"prioq": 2,
+
+"enable": false,
+
+"streamids": [{
+
+"streamid": 0,
+
+"frer": false,
+
+"enable": false,
+
+"priority_enable": false,
+
+"priority": 3,
+
+"vlanid_enable": false,
+
+"vlanid": 4,
+
+"dstmac_enable": false,
+
+"dstmac": "e0:73:e7:13:ff:44"
+
+},
+
+{
+
+"streamid": 1,
+
+"frer": false,
+
+"enable": false,
+
+"priority_enable": false,
+
+"priority": 3,
+
+"vlanid_enable": false,
+
+"vlanid": 5,
+
+"dstmac_enable": false,
+
+"dstmac": "e0:73:e7:13:ff:55"
+
+}
+
+]
+
+},
+
+{
+
+"prioq": 3,
+
+"enable": false,
+
+"streamids": [{
+
+"streamid": 0,
+
+"frer": false,
+
+"enable": false,
+
+"priority_enable": false,
+
+"priority": 3,
+
+"vlanid_enable": false,
+
+"vlanid": 6,
+
+"dstmac_enable": false,
+
+"dstmac": "e0:73:e7:13:ff:66"
+
+},
+
+{
+
+"streamid": 1,
+
+"frer": false,
+
+"enable": false,
+
+"priority_enable": false,
+
+"priority": 3,
+
+"vlanid_enable": false,
+
+"vlanid": 7,
+
+"dstmac_enable": false,
+
+"dstmac": "e0:73:e7:13:ff:77"
+
+}
+
+]
+
+},
+
+{
+
+"prioq": 4,
+
+"enable": false,
+
+"streamids": [{
+
+"streamid": 0,
+
+"frer": false,
+
+"enable": false,
+
+"priority_enable": false,
+
+"priority": 4,
+
+"vlanid_enable": false,
+
+"vlanid": 8,
+
+"dstmac_enable": false,
+
+"dstmac": "e0:73:e7:13:ff:88"
+
+},
+
+{
+
+"streamid": 1,
+
+"frer": false,
+
+"enable": false,
+
+"priority_enable": false,
+
+"priority": 3,
+
+"vlanid_enable": false,
+
+"vlanid": 3,
+
+"dstmac_enable": false,
+
+"dstmac": "e0:73:e7:13:ff:99"
+
+}
+
+]
+
+},
+
+{
+
+"prioq": 5,
+
+"enable": false,
+
+"streamids": [{
+
+"streamid": 0,
+
+"frer": false,
+
+"enable": false,
+
+"priority_enable": false,
+
+"priority": 2,
+
+"vlanid_enable": false,
+
+"vlanid": 10,
+
+"dstmac_enable": false,
+
+"dstmac": "e0:73:e7:13:ff:aa"
+
+},
+
+{
+
+"streamid": 1,
+
+"frer": false,
+
+"enable": false,
+
+"priority_enable": false,
+
+"priority": 3,
+
+"vlanid_enable": false,
+
+"vlanid": 3,
+
+"dstmac_enable": false,
+
+"dstmac": "e0:73:e7:13:ff:bb"
+
+}
+
+]
+
+},
+
+{
+
+"prioq": 6,
+
+"enable": false,
+
+"streamids": [{
+
+"streamid": 0,
+
+"frer": false,
+
+"enable": false,
+
+"priority_enable": false,
+
+"priority": 1,
+
+"vlanid_enable": false,
+
+"vlanid": 12,
+
+"dstmac_enable": false,
+
+"dstmac": "e0:73:e7:13:ff:cc"
+
+},
+
+{
+
+"streamid": 1,
+
+"frer": false,
+
+"enable": false,
+
+"priority_enable": false,
+
+"priority": 3,
+
+"vlanid_enable": false,
+
+"vlanid": 3,
+
+"dstmac_enable": false,
+
+"dstmac": "e0:73:e7:13:ff:dd"
+
+}
+
+]
+
+},
+
+{
+
+"prioq": 7,
+
+"enable": false,
+
+"streamids": [{
+
+"streamid": 0,
+
+"frer": false,
+
+"enable": false,
+
+"priority_enable": false,
+
+"priority": 4,
+
+"vlanid_enable": false,
+
+"vlanid": 14,
+
+"dstmac_enable": false,
+
+"dstmac": "e0:73:e7:13:ff:ee"
+
+},
+
+{
+
+"streamid": 1,
+
+"frer": false,
+
+"enable": false,
+
+"priority_enable": false,
+
+"priority": 3,
+
+"vlanid_enable": false,
+
+"vlanid": 15,
+
+"dstmac_enable": false,
+
+"dstmac": "e0:73:e7:13:ff:ff"
+
+}
+
+]
+
+}
+
+],
+
+"gatecontrollist": [{
+
+"index": 0,
+
+"gatestate": 1,
+
+"timeinterval": 50000000
+
+},
+
+{
+
+"index": 1,
+
+"gatestate": 2,
+
+"timeinterval": 50000000
+
+},
+
+{
+
+"index": 2,
+
+"gatestate": 0,
+
+"timeinterval": 50000000
+
+},
+
+{
+
+"index": 3,
+
+"gatestate": 0,
+
+"timeinterval": 50000000
+
+}
+
+]
+
+},
+
+"qav_conf": {
+
+"num_cbs_queues": 2,
+
+"queues": [{
+
+"cbs_q_num": 0,
+
+"cbs_en": false,
+
+"cbs_inc": 1,
+
+"cbs_dec": 200,
+
+"cred_min": 1000,
+
+"cred_max": 5000
+
+}, {
+
+"cbs_q_num": 1,
+
+"cbs_en": false,
+
+"cbs_inc": 1,
+
+"cbs_dec": 250,
+
+"cred_min": 3100,
+
+"cred_max": 2100
+
+}]
+
+},
+
+"qbuconf": {
+
+"pre_empt_enable": true,
+
+"pre_empt_size": 60
+
+}
+
+}
