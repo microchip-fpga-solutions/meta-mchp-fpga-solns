@@ -42,7 +42,7 @@ SYSTEMD_AUTO_ENABLE:${PN}-motor-control-bldc:mpfs-motor-control-kit-tsn = "enabl
 
 PV = "1.0+git${SRCPV}"
 
-SRCREV = "0ec593e358fdf34778cd688aea91217837e2a0c3"
+SRCREV = "a2cf0c8978afa28f5355576e5b26cdf908cdab4f"
 SRC_URI = "git://github.com/microchip-fpga-solutions/mchp-fpga-solns-linux-apps.git;protocol=https;nobranch=1"
 
 S = "${WORKDIR}/git"
