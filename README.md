@@ -101,10 +101,16 @@ Use the repo tool to fetch all the required repositories
 > Make sure to install the [repo](https://gerrit.googlesource.com/git-repo/+/HEAD/README.md) utility first.
 
   ```bash
-  repo init -u https://github.com/microchip-fpga-solutions/meta-mchp-fpga-solns-manifest.git -b <branch> -m default.xml
+  repo init -u https://github.com/microchip-fpga-solutions/meta-mchp-fpga-solns-manifest.git -b <branch-or-tag> -m default.xml
   ```
 
-Replace `<branch>` with the Yocto release branch and the manifest required. For example:
+Replace `<tag>` with the Yocto release latest tag and the manifest required. For example:
+
+  ```bash
+  repo init -u https://github.com/microchip-fpga-solutions/meta-mchp-fpga-solns-manifest.git -b refs/tags/v2026.1 -m default.xml
+  ```
+
+Replace `<branch>` with the Yocto release latest branch and the manifest required. For example:
 
   ```bash
   repo init -u https://github.com/microchip-fpga-solutions/meta-mchp-fpga-solns-manifest.git -b scarthgap -m default.xml
