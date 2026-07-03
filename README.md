@@ -10,6 +10,7 @@ This repository provides an Yocto layer to include applications and demos, which
 - [Supported Machine Targets](#supported-machines)
 - [Image Targets](#image-targets)
 - [Build Instructions](#build-instructions)
+- [Build for Motor Control Kit BLDC](#build-for-motor-control-bldc)
 - [Build for Different Machines](#build-for-machines)
 - [Finding the image](#find-the-image)
 - [Updating Yocto Image](#update-yocto-image)
@@ -25,6 +26,7 @@ This repository supports the following Devices:
 
 - [MPFS-VIDEO-KIT](https://mi-v-ecosystem.github.io/redirects/boards-mpfs-sev-kit-sev-kit-user-guide) (PolarFire SoC Video Kit)
 - MPFS-MOTOR-CONTROL-KIT (PolarFire SoC Motor Control Kit)
+- MPFS-MOTOR-CONTROL-KIT-BLDC (PolarFire SoC Motor Control Kit)
 
 <a name="layer-dependencies"></a>
 ## Layer Dependencies
@@ -43,6 +45,14 @@ This layer depends on the following layers:
   - Layers: meta-mchp
 ```
 
+For Motor Control Kit BLDC, additional layers are required:
+
+```text
+- meta-ros
+  - URI: https://github.com/ros/meta-ros
+  - Layers: meta-ros-common, meta-ros2, meta-ros2-humble
+```
+
 For information on the specific revisions used, refer to the
 [meta-mchp-fpga-solns-manifest](https://github.com/microchip-fpga-solutions/meta-mchp-fpga-solns-manifest) repository.
 
@@ -51,15 +61,16 @@ For information on the specific revisions used, refer to the
 
 The below table lists the machines which correspond to the various solutions:
 
-| `MACHINE`                            | Board Name                     | Solution                                      |
-| ------------------------------------ | -------------------------------|-----------------------------------------------|
-| `MACHINE=mpfs-video-kit-h264`        | MPFS-VIDEO-KIT                 | H.264                                         |
-| `MACHINE=mpfs-video-kit-h264-mm`     | MPFS-VIDEO-KIT                 | H.264 Modular                                 |
-| `MACHINE=mpfs-video-kit-raw-bayer`   | MPFS-VIDEO-KIT                 | Raw bayer                                     |
-| `MACHINE=mpfs-video-kit-tsn`         | MPFS-VIDEO-KIT                 | TSN                                           |
-| `MACHINE=mpfs-video-kit-drm`         | MPFS-VIDEO-KIT                 | DRM Display                                   |
-| `MACHINE=mpfs-motor-control-kit`     | MPFS-MOTOR-CONTROL-KIT         | Motor Control Base                            |
-| `MACHINE=mpfs-motor-control-kit-tsn` | MPFS-MOTOR-CONTROL-KIT         | Motor Control TSN                             |
+| `MACHINE`                             | Board Name                     | Solution                                      |
+| --------------------------------------| -------------------------------|-----------------------------------------------|
+| `MACHINE=mpfs-video-kit-h264`         | MPFS-VIDEO-KIT                 | H.264                                         |
+| `MACHINE=mpfs-video-kit-h264-mm`      | MPFS-VIDEO-KIT                 | H.264 Modular                                 |
+| `MACHINE=mpfs-video-kit-raw-bayer`    | MPFS-VIDEO-KIT                 | Raw bayer                                     |
+| `MACHINE=mpfs-video-kit-tsn`          | MPFS-VIDEO-KIT                 | TSN                                           |
+| `MACHINE=mpfs-video-kit-drm`          | MPFS-VIDEO-KIT                 | DRM Display                                   |
+| `MACHINE=mpfs-motor-control-kit`      | MPFS-MOTOR-CONTROL-KIT         | Motor Control Base                            |
+| `MACHINE=mpfs-motor-control-kit-tsn`  | MPFS-MOTOR-CONTROL-KIT         | Motor Control TSN                             |
+| `MACHINE=mpfs-motor-control-kit-bldc` | MPFS-MOTOR-CONTROL-KIT         | Motor Control BLDC                            |
 
 <a name="image-targets"></a>
 ## Image Targets
@@ -99,11 +110,43 @@ Replace `<branch>` with the Yocto release branch and the manifest required. For 
   repo init -u https://github.com/microchip-fpga-solutions/meta-mchp-fpga-solns-manifest.git -b scarthgap -m default.xml
   ```
 
+> For BLDC
+
+  ```bash
+  repo init -u https://github.com/microchip-fpga-solutions/meta-mchp-fpga-solns-manifest.git -b <branch> -m default_bldc.xml
+  ```
+
+Replace `<branch>` with the Yocto release branch and the manifest required. For example:
+
+  ```bash
+  repo init -u https://github.com/microchip-fpga-solutions/meta-mchp-fpga-solns-manifest.git -b scarthgap -m default_bldc.xml
+  ```
+
 Fetch all the required repositories using the following repo command:
 
   ```bash
   repo sync
   ```
+
+<a name="build-for-motor-control-bldc"></a>
+## Build for Motor Control Kit BLDC
+
+The Motor Control Kit BLDC requires a dedicated configuration. Use the `bldc` template:
+
+```bash
+cd yocto-dev
+TEMPLATECONF=../meta-mchp-fpga-solns/conf/templates/bldc source openembedded-core/oe-init-build-env
+```
+
+This will:
+- Set default machine to `mpfs-motor-control-kit-bldc`
+- Include required layers (meta-ros-common, meta-ros2, meta-ros2-humble)
+
+Build the image:
+
+```bash
+bitbake mchp-base-image
+```
 
 <a name="build-for-machines"></a>
 ## Build for Different Machines
@@ -156,7 +199,8 @@ Following table provides links to the Design files and the documentation for run
 | [Raw Bayer Programming Job File][5]                | [Raw Bayer demo][6]                          |
 | [TSN Programming Job File][7]                      | [Running TSN Demo][8]                        |
 | [DRM Programming Job File][9]                      | [Running DRM Demo][10]                       |
-| [mpfs095-som-base Programming Job File][11]        | [Basic Linux booting][12]                   |
+| [mpfs095-som-base Programming Job File][11]        | [Basic Linux booting][12]                    |
+| [mpfs095-motor-kit-bldc Programming Job File][13]  | [Running Motor Control BLDC Demo][14]        |
 
 [1]: https://github.com/polarfire-soc/polarfire-soc-video-kit-reference-design/releases/download/v2024.06/MPFS_VIDEO_KIT_BASE_DESIGN_2024_06.zip
 [2]: https://github.com/polarfire-soc/polarfire-soc-documentation/blob/master/applications-and-demos/mpfs-video-kit-h264-demo.md
@@ -170,6 +214,8 @@ Following table provides links to the Design files and the documentation for run
 [10]: https://github.com/microchip-fpga-solutions/mpfs250-video-kit-drm#demo-applications
 [11]: https://github.com/microchip-fpga-solutions/mpfs095-som-fcsg536e-base/releases
 [12]: https://github.com/polarfire-soc/polarfire-soc-documentation/blob/master/reference-designs-fpga-and-development-kits/updating-linux-in-mpfs-kit.md
+[13]: https://github.com/microchip-fpga-solutions/mpfs095-motor-kit-bldc/releases/download/BLDC_v2026.0/bldc-design-mpfs095-som-job-v2026.0.zip
+[14]: https://github.com/microchip-fpga-solutions/mpfs095-motor-kit-bldc/tree/main#instructions-to-run-the-demo
 
 For details about design or solution-specific job files, see the latest release notes.
 
