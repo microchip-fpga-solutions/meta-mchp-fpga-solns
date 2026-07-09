@@ -1,7 +1,7 @@
 FILESEXTRAPATHS:prepend := "${THISDIR}/files:"
 
 KBRANCH = "linux-6.18-mchp+fpga"
-SRCREV = "d6d89dee4dc9a928186b3921a1d36f72d703cc18"
+SRCREV = "9ffea9f9f9251cfcfe7d070915e7440f0978126d"
 SRC_URI = "git://github.com/microchip-fpga-solutions/linux4polarfire.git;protocol=https;branch=${KBRANCH}"
 
 SRC_URI:append:mpfs-video-kit-raw-bayer = " \

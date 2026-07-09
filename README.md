@@ -26,7 +26,6 @@ This repository supports the following Devices:
 
 - [MPFS-VIDEO-KIT](https://mi-v-ecosystem.github.io/redirects/boards-mpfs-sev-kit-sev-kit-user-guide) (PolarFire SoC Video Kit)
 - MPFS-MOTOR-CONTROL-KIT (PolarFire SoC Motor Control Kit)
-- MPFS-MOTOR-CONTROL-KIT-BLDC (PolarFire SoC Motor Control Kit)
 
 <a name="layer-dependencies"></a>
 ## Layer Dependencies
@@ -69,8 +68,8 @@ The below table lists the machines which correspond to the various solutions:
 | `MACHINE=mpfs-video-kit-tsn`          | MPFS-VIDEO-KIT                 | TSN                                           |
 | `MACHINE=mpfs-video-kit-drm`          | MPFS-VIDEO-KIT                 | DRM Display                                   |
 | `MACHINE=mpfs-motor-control-kit`      | MPFS-MOTOR-CONTROL-KIT         | Motor Control Base                            |
-| `MACHINE=mpfs-motor-control-kit-tsn`  | MPFS-MOTOR-CONTROL-KIT         | Motor Control TSN                             |
-| `MACHINE=mpfs-motor-control-kit-bldc` | MPFS-MOTOR-CONTROL-KIT         | Motor Control BLDC                            |
+| `MACHINE=mpfs-motor-control-kit-tsn`  | MPFS-MOTOR-CONTROL-KIT         | TSN                                           |
+| `MACHINE=mpfs-motor-control-kit-bldc` | MPFS-MOTOR-CONTROL-KIT         | BLDC                                          |
 
 <a name="image-targets"></a>
 ## Image Targets
@@ -203,10 +202,11 @@ Following table provides links to the Design files and the documentation for run
 | [H264 Programming Job File][1]                     | [Running H264 Demo][2]                       |
 | [H264 MM Programming Job File][3]                  | [Running H264 MM Demo][4]                    |
 | [Raw Bayer Programming Job File][5]                | [Raw Bayer demo][6]                          |
-| [TSN Programming Job File][7]                      | [Running TSN Demo][8]                        |
+| [mpfs-video-kit TSN Programming Job File][7]       | [Running TSN Demo on mpfs-video-kit][8]      |
 | [DRM Programming Job File][9]                      | [Running DRM Demo][10]                       |
 | [mpfs095-som-base Programming Job File][11]        | [Basic Linux booting][12]                    |
 | [mpfs095-motor-kit-bldc Programming Job File][13]  | [Running Motor Control BLDC Demo][14]        |
+| [mpfs095-motor-kit-tsn Programming Job File][15]   | [Running Motor Control TSN Demo][16]         |
 
 [1]: https://github.com/polarfire-soc/polarfire-soc-video-kit-reference-design/releases/download/v2024.06/MPFS_VIDEO_KIT_BASE_DESIGN_2024_06.zip
 [2]: https://github.com/polarfire-soc/polarfire-soc-documentation/blob/master/applications-and-demos/mpfs-video-kit-h264-demo.md
@@ -222,6 +222,8 @@ Following table provides links to the Design files and the documentation for run
 [12]: https://github.com/polarfire-soc/polarfire-soc-documentation/blob/master/reference-designs-fpga-and-development-kits/updating-linux-in-mpfs-kit.md
 [13]: https://github.com/microchip-fpga-solutions/mpfs095-motor-kit-bldc/releases/download/BLDC_v2026.0/bldc-design-mpfs095-som-job-v2026.0.zip
 [14]: https://github.com/microchip-fpga-solutions/mpfs095-motor-kit-bldc/tree/main#instructions-to-run-the-demo
+[15]: https://github.com/microchip-fpga-solutions/mpfs095-motor-kit-tsn/releases
+[16]: https://github.com/microchip-fpga-solutions/mpfs095-motor-kit-tsn/releases
 
 For details about design or solution-specific job files, see the latest release notes.
 
