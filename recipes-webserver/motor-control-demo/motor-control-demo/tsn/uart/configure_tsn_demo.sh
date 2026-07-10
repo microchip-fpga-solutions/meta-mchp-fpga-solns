@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-
 set -e
 
 # configure_tsn_demo.sh
@@ -14,11 +13,13 @@ set -e
 #   /opt/microchip/tsn/tsninit.sh mc
 #   ./board_setup.sh talker
 #   ./tsn_talker_service.sh start 192.168.13.20
+#   phc2sys starts in background
 #
 # Listener flow:
 #   /opt/microchip/tsn/tsninit.sh mc
 #   ./board_setup.sh listener
 #   ./tsn_listener_service.sh start
+#   phc2sys starts in background
 
 TSN_INIT="/opt/microchip/tsn/tsninit.sh"
 
@@ -35,6 +36,9 @@ if [ ! -f "$LISTENER_SERVICE" ] && [ -f "${SCRIPT_DIR}/tsn_listenrer_service.sh"
 fi
 
 DEFAULT_LISTENER_IP="192.168.13.20"
+
+PHC2SYS_LOG="/tmp/phc2sys.log"
+PHC2SYS_IFACE="eth1"
 
 check_root() {
     if [ "$(id -u)" -ne 0 ]; then
@@ -58,6 +62,13 @@ check_executable() {
     if [ ! -x "$1" ]; then
         echo "Making executable: $1"
         chmod +x "$1"
+    fi
+}
+
+check_command() {
+    if ! command -v "$1" >/dev/null 2>&1; then
+        echo "Error: Required command not found: $1"
+        exit 1
     fi
 }
 
@@ -92,7 +103,7 @@ run_tsn_init() {
 
     "$TSN_INIT" mc
 
-    wait_for_interface eth1 20
+    wait_for_interface "$PHC2SYS_IFACE" 20
 }
 
 run_board_setup() {
@@ -135,6 +146,39 @@ start_listener_service() {
     "$LISTENER_SERVICE" start
 }
 
+start_phc2sys() {
+    echo
+    echo "=========================================="
+    echo "Step 4: Starting phc2sys"
+    echo "=========================================="
+
+    check_command phc2sys
+
+    if ! ip link show "$PHC2SYS_IFACE" >/dev/null 2>&1; then
+        echo "Warning: Interface $PHC2SYS_IFACE not found."
+        echo "phc2sys may fail if $PHC2SYS_IFACE is not available."
+    fi
+
+    echo "Stopping any existing phc2sys instance..."
+    pkill phc2sys 2>/dev/null || true
+
+    echo "Starting phc2sys on interface $PHC2SYS_IFACE..."
+    echo "Log file: $PHC2SYS_LOG"
+
+    phc2sys -s "$PHC2SYS_IFACE" -c CLOCK_REALTIME -m --transportSpecific 1 -O 0 -w > "$PHC2SYS_LOG" 2>&1 &
+
+    sleep 1
+
+    if pgrep -x phc2sys >/dev/null 2>&1; then
+        echo "phc2sys started successfully."
+        pgrep -a phc2sys || true
+    else
+        echo "Warning: phc2sys does not appear to be running."
+        echo "Check log:"
+        echo "  cat $PHC2SYS_LOG"
+    fi
+}
+
 stop_all() {
     echo
     echo "=========================================="
@@ -156,7 +200,10 @@ stop_all() {
         "$BOARD_SETUP" 0 2>/dev/null || true
     fi
 
-    echo "Stopped TSN demo services and VLAN configuration."
+    echo "Stopping phc2sys..."
+    pkill phc2sys 2>/dev/null || true
+
+    echo "Stopped TSN demo services, VLAN configuration, and phc2sys."
 }
 
 show_status() {
@@ -185,6 +232,25 @@ show_status() {
         cd "$SCRIPT_DIR"
         "$LISTENER_SERVICE" status || true
     fi
+
+    echo
+    echo "phc2sys status:"
+
+    if pgrep -x phc2sys >/dev/null 2>&1; then
+        echo "phc2sys is running:"
+        pgrep -a phc2sys || true
+    else
+        echo "phc2sys is not running."
+    fi
+
+    echo
+
+    if [ -f "$PHC2SYS_LOG" ]; then
+        echo "Last 10 lines of $PHC2SYS_LOG:"
+        tail -n 10 "$PHC2SYS_LOG" || true
+    else
+        echo "phc2sys log not found: $PHC2SYS_LOG"
+    fi
 }
 
 usage() {
@@ -211,12 +277,14 @@ case "$1" in
         run_tsn_init
         run_board_setup talker
         start_talker_service "$LISTENER_IP"
+        start_phc2sys
 
         echo
         echo "=========================================="
         echo "Talker configuration complete"
         echo "=========================================="
         echo "Listener IP: $LISTENER_IP"
+        echo "phc2sys log: $PHC2SYS_LOG"
         ;;
 
     listener)
@@ -225,11 +293,13 @@ case "$1" in
         run_tsn_init
         run_board_setup listener
         start_listener_service
+        start_phc2sys
 
         echo
         echo "=========================================="
         echo "Listener configuration complete"
         echo "=========================================="
+        echo "phc2sys log: $PHC2SYS_LOG"
         ;;
 
     stop)

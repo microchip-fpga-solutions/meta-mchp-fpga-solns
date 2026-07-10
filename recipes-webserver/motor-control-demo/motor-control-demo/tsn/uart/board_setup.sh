@@ -32,8 +32,6 @@ case "$1" in
         # Start PTP reader and motor params listener
         /srv/www/tsn/uart/ptp_reader.sh &
         echo "  ptp_reader.sh started (PID: $!)"
-        phc2sys -s eth1 -c CLOCK_REALTIME -m --transportSpecific 1 -O 0 > /tmp/phc2sys.log 2>&1 &
-        echo "  phc2sys started (PID: $!)"
         python3 /srv/www/tsn/uart/get_motor_params.py &
         echo "  get_motor_params.py started (PID: $!)"
         echo "Done."
@@ -56,8 +54,6 @@ case "$1" in
         # Start japll-pi and phc2sys
         cd /opt/microchip/japll-pi-controller/ && ./japll-pi > /dev/null 2>&1 &
         echo "  japll-pi started (PID: $!)"
-        phc2sys -s eth1 -c CLOCK_REALTIME -m --transportSpecific 1 -O 0 > /tmp/phc2sys.log 2>&1 &
-        echo "  phc2sys started (PID: $!)"
         echo "Done."
         ;;
     0)
@@ -68,7 +64,6 @@ case "$1" in
         pkill -f "ptp_reader.sh" 2>/dev/null
         pkill -f "get_motor_params.py" 2>/dev/null
         pkill -f "japll-pi" 2>/dev/null
-        pkill -f "phc2sys" 2>/dev/null
         echo "  Services killed"
         echo "Done."
         ;;
@@ -84,7 +79,6 @@ case "$1" in
         pgrep -af ptp_reader || echo "  ptp_reader.sh: not running"
         pgrep -af get_motor_params || echo "  get_motor_params.py: not running"
         pgrep -af japll-pi || echo "  japll-pi: not running"
-        pgrep -af phc2sys || echo "  phc2sys: not running"
         ;;
     *)
         echo "Usage: $0 {talker|listener|0|status}"
