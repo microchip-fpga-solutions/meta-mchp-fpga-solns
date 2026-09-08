@@ -66,7 +66,6 @@ The below table lists the machines which correspond to the various solutions:
 | `MACHINE=mpfs-video-kit-h264-mm`      | MPFS-VIDEO-KIT                 | H.264 Modular                                 |
 | `MACHINE=mpfs-video-kit-mjpeg`        | MPFS-VIDEO-KIT                 | MJPEG                                         |
 | `MACHINE=mpfs-video-kit-raw-bayer`    | MPFS-VIDEO-KIT                 | Raw bayer                                     |
-| `MACHINE=mpfs-video-kit-tsn`          | MPFS-VIDEO-KIT                 | TSN                                           |
 | `MACHINE=mpfs-video-kit-drm`          | MPFS-VIDEO-KIT                 | DRM Display                                   |
 | `MACHINE=mpfs-motor-control-kit`      | MPFS-MOTOR-CONTROL-KIT         | Motor Control Base                            |
 | `MACHINE=mpfs-motor-control-kit-tsn`  | MPFS-MOTOR-CONTROL-KIT         | TSN                                           |
@@ -175,10 +174,10 @@ Use the following build command depending on the required solution (i.e, machine
 MACHINE=<supported machine>  bitbake <image target>
 ```
 
-Example To build WIC for TSN solution:
+Example To build WIC for DRM solution:
 
 ```bash
-MACHINE=mpfs-video-kit-tsn bitbake mchp-base-image
+MACHINE=mpfs-video-kit-drm bitbake mchp-base-image
 ```
 
 <a name="find-the-image"></a>
@@ -186,7 +185,7 @@ MACHINE=mpfs-video-kit-tsn bitbake mchp-base-image
 
 On successful build, the disk image (a `.wic` file) would be generated in `yocto-dev/build/tmp-glibc/deploy/images/<MACHINE>/`.
 Example:
-`yocto-dev/build/tmp-glibc/deploy/images/mpfs-video-kit-tsn/mchp-base-image-mpfs-video-kit-tsn.rootfs.wic`
+`yocto-dev/build/tmp-glibc/deploy/images/mpfs-video-kit-drm/mchp-base-image-mpfs-video-kit-drm.rootfs.wic`
 
 <a name="update-yocto-image"></a>
 ## Updating Yocto Image
@@ -203,7 +202,6 @@ Following table provides links to the Design files and the documentation for run
 | [H264 Programming Job File][1]                     | [Running H264 Demo][2]                       |
 | [H264 MM Programming Job File][3]                  | [Running H264 MM Demo][4]                    |
 | [Raw Bayer Programming Job File][5]                | [Raw Bayer demo][6]                          |
-| [mpfs-video-kit TSN Programming Job File][7]       | [Running TSN Demo on mpfs-video-kit][8]      |
 | [DRM Programming Job File][9]                      | [Running DRM Demo][10]                       |
 | [mpfs095-som-base Programming Job File][11]        | [Basic Linux booting][12]                    |
 | [mpfs095-motor-kit-bldc Programming Job File][13]  | [Running Motor Control BLDC Demo][14]        |
