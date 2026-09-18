@@ -64,6 +64,7 @@ The below table lists the machines which correspond to the various solutions:
 | --------------------------------------| -------------------------------|-----------------------------------------------|
 | `MACHINE=mpfs-video-kit-h264`         | MPFS-VIDEO-KIT                 | H.264                                         |
 | `MACHINE=mpfs-video-kit-h264-mm`      | MPFS-VIDEO-KIT                 | H.264 Modular                                 |
+| `MACHINE=mpfs-video-kit-mjpeg`        | MPFS-VIDEO-KIT                 | MJPEG                                         |
 | `MACHINE=mpfs-video-kit-raw-bayer`    | MPFS-VIDEO-KIT                 | Raw bayer                                     |
 | `MACHINE=mpfs-video-kit-tsn`          | MPFS-VIDEO-KIT                 | TSN                                           |
 | `MACHINE=mpfs-video-kit-drm`          | MPFS-VIDEO-KIT                 | DRM Display                                   |

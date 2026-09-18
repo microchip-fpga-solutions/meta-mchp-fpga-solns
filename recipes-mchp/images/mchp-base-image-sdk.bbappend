@@ -7,6 +7,11 @@ IMAGE_INSTALL:append:mpfs-video-kit-h264 = " \
     packagegroup-mchp-h264 \
 "
 
+IMAGE_INSTALL:append:mpfs-video-kit-mjpeg = " \
+    packagegroup-mchp-mjpeg \
+    packagegroup-mchp-mjpeg-gstreamer \
+"
+
 IMAGE_INSTALL:append:mpfs-video-kit-h264-mm = " \
     packagegroup-mchp-h264 \
 "

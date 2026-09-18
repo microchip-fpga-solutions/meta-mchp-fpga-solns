@@ -8,6 +8,9 @@ do_install:append:mpfs-video-kit-httpd-all () {
     echo 'daemon ALL=(ALL:ALL) NOPASSWD: /srv/www/h264/ffmpeg.sh
     daemon ALL=(ALL:ALL) NOPASSWD: /srv/www/h264/stop.sh
     daemon ALL=(ALL:ALL) NOPASSWD: /srv/www/h264/update.sh
+    daemon ALL=(ALL:ALL) NOPASSWD: /srv/www/mjpeg/ffmpeg.sh
+    daemon ALL=(ALL:ALL) NOPASSWD: /srv/www/mjpeg/stop.sh
+    daemon ALL=(ALL:ALL) NOPASSWD: /srv/www/mjpeg/update.sh
     daemon ALL=(ALL:ALL) NOPASSWD: /srv/www/tsn/flood_traffic.sh
     daemon ALL=(ALL:ALL) NOPASSWD: /srv/www/tsn/restart_countdown.sh
     daemon ALL=(ALL:ALL) NOPASSWD: /srv/www/tsn/apply_tsn.sh

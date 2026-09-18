@@ -12,6 +12,7 @@ Microchip targets:
 Microchip PolarFire SoC Video Kit supported machines/solutions:
     mpfs-video-kit-h264
     mpfs-video-kit-h264-mm
+    mpfs-video-kit-mjpeg
     mpfs-video-kit-raw-bayer
     mpfs-video-kit-drm
     mpfs-video-kit-tsn
