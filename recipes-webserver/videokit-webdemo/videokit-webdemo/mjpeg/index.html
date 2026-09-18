@@ -1,0 +1,364 @@
+<html>
+<head>
+	<title>Microchip MJPEG GUI Demo</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="pfsoc.css">
+<style>
+</style>
+</head>
+<body>		
+	<!--    <img src="microchip_logo.png" alt="Microchip" width="150" height="100"></br> -->
+        <img src="mchp_logo2.png" alt="Microchip" width="187" height="100"></br>
+<table width=100% align=center >
+	<tr height=5px> 	</tr>
+	<tr><td>
+	<img src="header.png" alt="Microchip" width="100%" height="45"></br>
+	</td> </tr>
+	<tr height=25px> 	</tr>
+</table>
+
+	<form action="update.php">
+<table width=75% align=center bordercolor="#00008B">
+	<tr>
+		<td width=35% align=center>
+			<p style="color:blue;font-family:verdana;font-size:16px" 
+			align=left>&nbsp;&nbsp;Brightness:</p>
+		</td>
+	        <td style="width:5%" align=left> </td>
+	        <td style="width:2%" align=left> </td>
+	        
+		<td style="width:8%" align=left> </td>
+		<td width=35% align=center>
+			<p style="color:blue;font-family:verdana;font-size:16px" 
+			align=left>&nbsp;&nbsp;Color Balance: Red</p>
+		</td>
+	        <td style="width:5%" align=left> </td>
+	        <td style="width:2%" align=left> </td>
+	        <td style="width:8%" align=left> </td>
+	</tr>
+	<tr>
+		<td width=35% align=center>
+			<input type="range" min="1" max="255" name="brightness" value="128" 
+			class="slider" id="s_bright" step="1"> 
+		</td>
+	        <td style="width:5%" align=left> 
+			<input style="width:50px;color:blue;font-family:verdana;
+			font-size:12px;	font-weight: bold;" 
+			type="text" id="v_bright" name="t_bright" value="128" disabled>
+		</td>
+		<td style="width:2%" align=center>
+			<div> <img id="reset1" src="reset.png" alt="Reset" onclick="func_a();"
+			style="width:20px;height:20px;" title="Reset" /> </div>
+		</td>
+	        <td style="width:8%" align=left> </td>
+		
+		<td width=35% align=center>
+			<input type="range" min="1" max="255" name="cbred" value="128" 
+			class="slider" id="s_red" step="1"> 
+		</td>
+	        <td style="width:5%" align=left> 
+			<input style="width:50px;color:blue;font-family:verdana;
+			font-size:12px;	font-weight: bold;" 
+			type="text" id="v_red" name="t_red" value="128" disabled>
+		</td>
+		<td style="width:2%" align=center>
+			<div> <img id="reset2" src="reset.png" alt="Reset" onclick="func_b();"
+			style="width:20px;height:20px;" title="Reset" /> </div>
+		</td>
+	        <td style="width:8%" align=left> </td>
+	</tr>
+	<tr>
+		<td width=35% align=center>
+			<p style="color:blue;font-family:verdana;font-size:16px" 
+			align=left>&nbsp;&nbsp;Contrast:</p>
+		</td>
+	        <td style="width:5%" align=left> 
+		</td>
+	        <td style="width:2%" align=left> </td>
+	        <td style="width:8%" align=left> </td>
+		<td width=35% align=center>
+			<p style="color:blue;font-family:verdana;font-size:16px" 
+			align=left>&nbsp;&nbsp;Color Balance: Green</p>
+		</td>
+	        <td style="width:5%" align=left> 
+		</td>
+	        <td style="width:2%" align=left> </td>
+	        <td style="width:8%" align=left> </td>
+	</tr>
+	<tr>
+		<td width=35% align=center>
+			<input type="range" min="1" max="255" name="contrast" value="128" 
+			class="slider" id="s_contrast" step="1"> 
+		</td>
+	        <td style="width:5%" align=left> 
+			<input style="width:50px;color:blue;font-family:verdana;
+			font-size:12px;	font-weight: bold;" 
+			type="text" id="v_contrast" name="t_contrast" value="128" disabled>
+		</td>
+		<td style="width:2%" align=center>
+			<div> <img id="reset3" src="reset.png" alt="Reset" onclick="func_c();"
+			style="width:20px;height:20px;" title="Reset" /> </div>
+		</td>
+	        <td style="width:8%" align=left> </td>
+		
+		<td width=35% align=center>
+			<input type="range" min="1" max="255" name="cbgreen" value="128" 
+			class="slider" id="s_green" step="1"> 
+		</td>
+	        <td style="width:5%" align=left> 
+			<input style="width:50px;color:blue;font-family:verdana;
+			font-size:12px;	font-weight: bold;" 
+			type="text" id="v_green" name="t_green" value="128" disabled>
+		</td>
+		<td style="width:2%" align=center>
+			<div> <img id="reset4" src="reset.png" alt="Reset" onclick="func_d();"
+			style="width:20px;height:20px;" title="Reset" /> </div>
+		</td>
+	        <td style="width:8%" align=left> </td>
+	</tr>
+	<tr>
+		<td width=35% align=center>
+			<p style="color:blue;font-family:verdana;font-size:16px" 
+			align=left>&nbsp;&nbsp;Quality Factor:</p>
+		</td>
+	        <td style="width:5%" align=left> 
+		</td>
+	        <td style="width:2%" align=left> </td>
+	        <td style="width:8%" align=left> </td>
+
+		<td width=35% align=center>
+			<p style="color:blue;font-family:verdana;font-size:16px" 
+			align=left>&nbsp;&nbsp;Color Balance: Blue</p>
+		</td>
+	        <td style="width:5%" align=left> 
+		</td>
+	        <td style="width:2%" align=left> </td>
+	        <td style="width:8%" align=left> </td>
+	</tr>
+	<tr>
+		<td width=35% align=center>
+			<input type="range" min="1" max="100" name="qf" value="50" 
+			class="slider" id="s_qf" step="1"> 
+		</td>
+	        <td style="width:5%" align=left> 
+			<input style="width:50px;color:blue;font-family:verdana;
+			font-size:12px;	font-weight: bold;" 
+			type="text" id="v_qf" name="t_qf" value="50" disabled>
+		</td>
+		<td style="width:2%" align=center>
+			<div> <img id="reset5" src="reset.png" alt="Reset" onclick="func_e();"
+			style="width:20px;height:20px;" title="Reset" /> </div>
+		</td>
+	        <td style="width:8%" align=left> </td>
+
+		<td width=35% align=center>
+			<input type="range" min="1" max="255" name="cbblue" value="128" 
+			class="slider" id="s_blue" step="1"> 
+		</td>
+	        <td style="width:5%" align=left> 
+			<input style="width:50px;color:blue;font-family:verdana;
+			font-size:12px;	font-weight: bold;" 
+			type="text" id="v_blue" name="t_blue" value="128" disabled>
+		</td>
+		<td style="width:2%" align=center>
+			<div> <img id="reset6" src="reset.png" alt="Reset" onclick="func_f();"
+			style="width:20px;height:20px;" title="Reset" /> </div>
+		</td>
+	        <td style="width:8%" align=left> </td>
+	</tr>
+	<tr height=25px>
+	</tr>
+</table>
+ <table align=center width=30%>
+	<tr height=20px>
+	</tr>
+	<tr align=center>
+	        <td style="width:25%" align=center> 
+			<button type="submit" align=center id=update> Update </button>
+		</td>
+	</form>
+	        <td style="width:25%" align=center> 
+		</td>
+	        <td style="width:25%" align=center> 
+			<input onclick="change()" type="button" 
+			value="Start Video" id="start" />
+		</td>
+	        <td style="width:25%" align=center> 
+			<input type="button" value="Stop Video" id="stop" />
+		</td>
+	</tr>
+	<tr height=20px>
+	</tr>
+</table>
+
+<table width=100% align=center >
+	<tr height=100px> 	</tr>
+	<tr><td>
+	<img src="footer.png" alt="Microchip" width="100%" height="150"></br>
+	</td> </tr>
+	<tr height=5px> 	</tr>
+</table>
+        <script>
+		function func_a() {
+			document.getElementById('s_bright').value = 128;
+			document.getElementById('v_bright').value = 128;
+			}
+		function func_b() {
+			document.getElementById('s_red').value = 128;
+			document.getElementById('v_red').value = 128;
+			}
+		function func_c() {
+			document.getElementById('s_contrast').value = 128;
+			document.getElementById('v_contrast').value = 128;
+			}
+		function func_d() {
+			document.getElementById('s_green').value = 128;
+			document.getElementById('v_green').value = 128;
+			}
+		function func_e() {
+			document.getElementById('s_qf').value = 50;
+			document.getElementById('v_qf').value = 50;
+			}
+		function func_f() {
+			document.getElementById('s_blue').value = 128;
+			document.getElementById('v_blue').value = 128;
+			}
+        </script>
+
+
+	<script>
+	var bright_slider = document.getElementById("s_bright");
+	var bright_val = document.getElementById("v_bright");
+	bright_val.innerHTML = bright_slider.value;
+	bright_slider.oninput = function() {	 
+		bright_val.innerHTML = this.value;	
+                document.getElementById("v_bright").value = bright_slider.value; 
+	}
+	</script>
+	<script>
+	var red_slider = document.getElementById("s_red");
+	var red_val = document.getElementById("v_red");
+	red_val.innerHTML = red_slider.value;
+	red_slider.oninput = function() {	 red_val.innerHTML = this.value;	
+                document.getElementById("v_red").value = red_slider.value; 
+	}
+	</script>
+	<script>
+	var contrast_slider = document.getElementById("s_contrast");
+	var contrast_val = document.getElementById("v_contrast");
+	contrast_val.innerHTML = contrast_slider.value;
+	contrast_slider.oninput = function() {	 contrast_val.innerHTML = this.value; 	
+                document.getElementById("v_contrast").value = contrast_slider.value; 
+	}
+	</script>
+	<script>
+	var green_slider = document.getElementById("s_green");
+	var green_val = document.getElementById("v_green");
+	green_val.innerHTML = green_slider.value;
+	green_slider.oninput = function() {	 green_val.innerHTML = this.value;	
+                document.getElementById("v_green").value = green_slider.value; 
+	}
+	</script>
+	<script>
+	var qf_slider = document.getElementById("s_qf");
+	var qf_val = document.getElementById("v_qf");
+	qf_val.innerHTML = qf_slider.value;
+	qf_slider.oninput = function() {	 
+		qf_val.innerHTML = this.value; 	
+                document.getElementById("v_qf").value = qf_slider.value; 
+	}
+	</script>
+	<script>
+	var blue_slider = document.getElementById("s_blue");
+	var blue_val = document.getElementById("v_blue");
+	blue_val.innerHTML = blue_slider.value;
+	blue_slider.oninput = function() {	 blue_val.innerHTML = this.value;	
+                document.getElementById("v_blue").value = blue_slider.value; 
+	}
+	</script>
+
+	<script>
+	function reset() {
+			  document.getElementById("v_bright").value = "128";
+			  document.getElementById("v_contrast").value = "128";
+			  document.getElementById("v_qf").value = "50";
+			  document.getElementById("v_red").value = "128";
+			  document.getElementById("v_green").value = "128";
+			  document.getElementById("v_blue").value = "128";
+	}
+
+	</script>
+	<script type="text/javascript">
+		    document.getElementById("stop").onclick = function () {
+			            location.href = "stop.php";
+			        };
+	</script>
+	<script>
+		function change() 
+		{
+	 	   var elem = document.getElementById("start");
+			if (elem.value=="Stop") {
+				location.href='stop.php';
+			}
+			else {
+				location.href='start.php';
+			}
+		}
+	</script>
+	<script>
+		window.onload = function() {
+		document.getElementById("start").disabled = false;
+		document.getElementById("stop").disabled = true;
+		document.getElementById("update").disabled = true;
+		url = new URL(window.location.href);
+		let search_params = url.searchParams; 
+		let status = url.searchParams.get('stream');
+		if(status=="started") {
+			document.getElementById("start").disabled = true;
+			document.getElementById("stop").disabled = false;
+			document.getElementById("update").disabled = false;
+                	}
+			  url = new URL(window.location.href);
+
+			  var bright_slider = document.getElementById("s_bright");
+			  var bright_value = document.getElementById("v_bright");
+			  var contrast_slider = document.getElementById("s_contrast");
+			  var contrast_value = document.getElementById("v_contrast");
+			  var qf_slider = document.getElementById("s_qf");
+			  var qf_value = document.getElementById("v_qf");
+			  var red_slider = document.getElementById("s_red");
+			  var red_value = document.getElementById("v_red");
+			  var green_slider = document.getElementById("s_green");
+			  var green_value = document.getElementById("v_green");
+			  var blue_slider = document.getElementById("s_blue");
+			  var blue_value = document.getElementById("v_blue");
+
+			if (url.searchParams.get('v_bright')) {
+			  bright_slider.value = getURIParameter("v_bright");
+			  bright_value.value = getURIParameter("v_bright");
+			  contrast_slider.value = getURIParameter("v_contrast");
+			  contrast_value.value = getURIParameter("v_contrast");
+			  qf_slider.value = getURIParameter("v_qf");
+			  qf_value.value = getURIParameter("v_qf");
+			  red_slider.value = getURIParameter("v_red");
+			  red_value.value = getURIParameter("v_red");
+			  green_slider.value = getURIParameter("v_green");
+			  green_value.value = getURIParameter("v_green");
+			  blue_slider.value = getURIParameter("v_blue");
+			  blue_value.value = getURIParameter("v_blue");
+			}
+		}
+	</script>
+	<script>
+	function getURIParameter(param, asArray) {
+	return document.location.search.substring(1).split('&').reduce(function(p,c) {
+	var parts = c.split('=', 2).map(function(param) { return decodeURIComponent(param); });
+	if(parts.length == 0 || parts[0] != param) return (p instanceof Array) && !asArray ? null : p;
+	return asArray ? p.concat(parts.concat(true)[1]) : parts.concat(true)[1];
+	}, []);
+	}
+	</script>
+
+
+</body>
+</html>

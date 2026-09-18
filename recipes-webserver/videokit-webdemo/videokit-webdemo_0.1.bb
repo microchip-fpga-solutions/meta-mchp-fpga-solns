@@ -17,16 +17,43 @@ SYSTEM_CONF="/etc"
 SRC_URI:append = "file://. "
 
 do_install:append () {
+	install -d ${D}/etc/systemd/network/
+	cp ${WORKDIR}/60-static-eth0.network ${D}/etc/systemd/network/
+	cp ${WORKDIR}/70-static-eth1.network ${D}/etc/systemd/network/
+}
+
+do_install:append:mpfs-video-kit-h264 () {
 	install -d ${D}${WEB_PATH}
 	install -m 0755 ${WORKDIR}/index.php ${D}${WEB_PATH}
 	install -m 0755 ${WORKDIR}/LICENSE ${D}${WEB_PATH}
 	install -d ${D}${H264_PATH}
 	install -m 0755 ${WORKDIR}/h264/* ${D}${H264_PATH}
+	chown -R 1:root ${D}${WEB_PATH}/
+}
+
+do_install:append:mpfs-video-kit-h264-mm () {
+	install -d ${D}${WEB_PATH}
+	install -m 0755 ${WORKDIR}/index.php ${D}${WEB_PATH}
+	install -m 0755 ${WORKDIR}/LICENSE ${D}${WEB_PATH}
+	install -d ${D}${H264_PATH}
+	install -m 0755 ${WORKDIR}/h264/* ${D}${H264_PATH}
+	chown -R 1:root ${D}${WEB_PATH}/
+}
+
+do_install:append:mpfs-video-kit-mjpeg () {
+	install -d ${D}${WEB_PATH}
+	install -m 0755 ${WORKDIR}/index_mjpeg.php ${D}${WEB_PATH}/index.php
+	install -m 0755 ${WORKDIR}/LICENSE ${D}${WEB_PATH}
+	install -d ${D}${MJPEG_PATH}
+	install -m 0755 ${WORKDIR}/mjpeg/* ${D}${MJPEG_PATH}
+	chown -R 1:root ${D}${WEB_PATH}/
+}
+
+do_install:append:mpfs-video-kit-tsn () {
+	install -d ${D}${WEB_PATH}
+	install -m 0755 ${WORKDIR}/LICENSE ${D}${WEB_PATH}
 	install -d ${D}${TSN_PATH}
 	install -m 0755 ${WORKDIR}/tsn/* ${D}${TSN_PATH}
-	install -d ${D}/etc/systemd/network/
-	cp ${WORKDIR}/60-static-eth0.network ${D}/etc/systemd/network/
-	cp ${WORKDIR}/70-static-eth1.network ${D}/etc/systemd/network/
 	chown -R 1:root ${D}${WEB_PATH}/
 }
 
@@ -34,3 +61,4 @@ FILES:${PN} += "${WEB_PATH}/*"
 FILES:${PN} += "/etc/systemd/network/*"
 
 COMPATIBLE_MACHINE = "mpfs-video-kit-httpd-all"
+

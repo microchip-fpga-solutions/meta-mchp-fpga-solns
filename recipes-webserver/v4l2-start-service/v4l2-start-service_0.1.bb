@@ -5,6 +5,7 @@ LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/MIT;md5=0835ade698e0bcf8506ecda
 PR = "r0"
 SRC_URI = "file://v4l2-start_service.sh \
 	   file://v4l2-start_service.service \
+	   file://v4l2-start_service_mjpeg.sh \
 	"
 
 inherit systemd features_check
@@ -17,7 +18,21 @@ do_compile() {
 	:
 }
 
-do_install() {
+do_install:append:mpfs-video-kit-mjpeg() {
+	install -d ${D}/opt/microchip/multimedia/v4l2/
+	install -m 0755 v4l2-start_service_mjpeg.sh ${D}/opt/microchip/multimedia/v4l2/v4l2-start_service.sh
+	install -d ${D}${systemd_unitdir}/system
+	install -m 0644 ${WORKDIR}/v4l2-start_service.service ${D}${systemd_unitdir}/system
+}
+
+do_install:append:mpfs-video-kit-h264() {
+	install -d ${D}/opt/microchip/multimedia/v4l2/
+	install -m 0755 v4l2-start_service.sh ${D}/opt/microchip/multimedia/v4l2/v4l2-start_service.sh
+	install -d ${D}${systemd_unitdir}/system
+	install -m 0644 ${WORKDIR}/v4l2-start_service.service ${D}${systemd_unitdir}/system
+}
+
+do_install:append:mpfs-video-kit-h264-mm() {
 	install -d ${D}/opt/microchip/multimedia/v4l2/
 	install -m 0755 v4l2-start_service.sh ${D}/opt/microchip/multimedia/v4l2/v4l2-start_service.sh
 	install -d ${D}${systemd_unitdir}/system
