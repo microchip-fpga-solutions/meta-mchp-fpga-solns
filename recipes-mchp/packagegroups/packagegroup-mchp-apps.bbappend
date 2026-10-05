@@ -19,6 +19,7 @@ RDEPENDS:packagegroup-mchp-apps:mpfs-video-kit-tsn += "\
     mchp-fpga-solns-linux-apps-tsn \
     mchp-fpga-solns-linux-apps-japll-pi-controller \
     mchp-fpga-solns-linux-apps-opcua \
+    linux4polarfire-drivers \
 "
 
 RDEPENDS:packagegroup-mchp-apps:mpfs-video-kit-drm += "\
@@ -34,5 +35,6 @@ RDEPENDS:packagegroup-mchp-apps:mpfs-motor-control-kit-tsn += "\
     polarfire-soc-linux-examples-dt-overlays \
     mchp-fpga-solns-linux-apps-tsn \
     mchp-fpga-solns-linux-apps-japll-pi-controller \
+    linux4polarfire-drivers \
 "
 
