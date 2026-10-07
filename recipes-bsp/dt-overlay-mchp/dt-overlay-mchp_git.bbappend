@@ -10,5 +10,5 @@ DT_FILES_PATH:mpfs-motor-control-kit = "${WORKDIR}/git/mpfs_motor_control"
 DT_FILES_PATH:mpfs-motor-control-kit-bldc = "${WORKDIR}/git/mpfs_motor_control"
 DT_FILES_PATH:mpfs-motor-control-kit-tsn = "${WORKDIR}/git/mpfs_motor_control"
 
-SRCREV = "b8a63a820607f8e7be5579b5d387afd0ec19f5ad"
+SRCREV = "df6d7d4e0fc9914c197cde074181714bb0a023e0"
 SRC_URI = "git://github.com/microchip-fpga-solutions/dt-overlay4polarfire.git;protocol=https;nobranch=1"
