@@ -206,6 +206,7 @@ Following table provides links to the Design files and the documentation for run
 | [mpfs095-som-base Programming Job File][11]        | [Basic Linux booting][12]                    |
 | [mpfs095-motor-kit-bldc Programming Job File][13]  | [Running Motor Control BLDC Demo][14]        |
 | [mpfs095-motor-kit-tsn Programming Job File][15]   | [Running Motor Control TSN Demo][16]         |
+| [mpfs-video-kit-mjpeg Programming Job File][17]    | [Running MJPEG Demo][18]                     |
 
 [1]: https://github.com/polarfire-soc/polarfire-soc-video-kit-reference-design/releases/download/v2024.06/MPFS_VIDEO_KIT_BASE_DESIGN_2024_06.zip
 [2]: https://github.com/polarfire-soc/polarfire-soc-documentation/blob/master/applications-and-demos/mpfs-video-kit-h264-demo.md
@@ -223,6 +224,8 @@ Following table provides links to the Design files and the documentation for run
 [14]: https://github.com/microchip-fpga-solutions/mpfs095-motor-kit-bldc/tree/main#instructions-to-run-the-demo
 [15]: https://github.com/microchip-fpga-solutions/mpfs095-motor-kit-tsn/releases
 [16]: https://github.com/microchip-fpga-solutions/mpfs095-motor-kit-tsn/releases
+[17]: https://github.com/microchip-fpga-solutions/mpfs250-video-kit-mjpeg-streaming/releases
+[18]: https://github.com/microchip-fpga-solutions/mpfs250-video-kit-mjpeg-streaming
 
 For details about design or solution-specific job files, see the latest release notes.
 
