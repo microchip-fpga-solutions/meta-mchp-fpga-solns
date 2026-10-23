@@ -10,7 +10,6 @@ PACKAGES = " \
 "
 
 RDEPENDS:packagegroup-mchp-tsn = "\
-    ffmpeg \
     apache2 \
     php \
     php-cli \
@@ -18,7 +17,6 @@ RDEPENDS:packagegroup-mchp-tsn = "\
     php-cgi \
     php-modphp \
     sudo \
-    v4l2-start-service \
     videokit-webdemo \
     python3-asyncua \
     openssl \
