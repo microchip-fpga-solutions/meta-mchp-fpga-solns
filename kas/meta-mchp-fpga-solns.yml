@@ -6,6 +6,10 @@ header:
     - repo: meta-mchp
       file: kas/include/locals/polarfire-local.yml
 
+local_conf_header:
+  meta-mchp-fpga-solns: |
+    include conf/templates/default/meta-mchp-fpga-solns.conf.sample.inc
+
 repos:
 
   meta-mchp-fpga-solns:
