@@ -28,14 +28,12 @@ RDEPENDS:packagegroup-mchp-motor-control-tsn = "\
     htop \
     nano \
     linuxptp \
-    ffmpeg \
     apache2 \
     php \
     php-cli \
     php-fpm \
     php-cgi \
     sudo \
-    v4l2-start-service \
     python3-asyncua \
     openssl \
     openssl-engines \
