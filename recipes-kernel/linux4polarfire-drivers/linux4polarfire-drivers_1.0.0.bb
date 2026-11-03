@@ -9,10 +9,9 @@ LIC_FILES_CHKSUM = "file://COPYING;md5=a362c03f8df4e23f8a155e1cb2c45b2a"
 
 inherit module
 
-SRC_URI = "git://git@bitbucket.microchip.com/fpga_pfsoc_sev_solutions/linux4polarfire.git;protocol=ssh;branch=linux4polarfire-v2026-09 \
-           file://mchp-coretse-softdep.conf \
-"
-SRCREV = "d7152cbd93ed625b24bcf6535e614c99da272f7b"
+require linux4polarfire-src.inc
+
+SRC_URI += "file://mchp-coretse-softdep.conf"
 PV = "1.0.0"
 
 S = "${WORKDIR}/git"

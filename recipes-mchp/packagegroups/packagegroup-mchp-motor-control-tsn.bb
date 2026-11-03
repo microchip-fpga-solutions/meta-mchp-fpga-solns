@@ -14,6 +14,7 @@ RDEPENDS:packagegroup-mchp-motor-control-tsn = "\
     mchp-fpga-solns-linux-apps-motor-control-bldc \
     mchp-fpga-solns-linux-apps-tsn \
     mchp-fpga-solns-linux-apps-japll-pi-controller \
+    mpfs-mc-iio-drivers \
     polarfire-soc-linux-examples-dt-overlays \
     libiio \
     python3-bokeh \

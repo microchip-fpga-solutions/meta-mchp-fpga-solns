@@ -11,6 +11,7 @@ PACKAGES = " \
 
 RDEPENDS:packagegroup-mchp-motor-control-bldc = "\
     mchp-fpga-solns-linux-apps-motor-control-bldc \
+    mpfs-mc-iio-drivers \
     polarfire-soc-linux-examples-dt-overlays \
     libiio \
     python3-bokeh \
