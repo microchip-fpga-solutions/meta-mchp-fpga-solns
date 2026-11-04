@@ -44,3 +44,27 @@ SRC_URI:append:mpfs-motor-control-kit-tsn = " \
 # have been deployed, so the FIT packaging step can pick them up.
 do_assemble_fitimage[depends] += "dt-overlay-mchp:do_deploy"
 
+SRCREV_linux4polarfire-explore:mpfs-video-kit-all = "${AUTOREV}"
+SRC_URI:append:mpfs-video-kit-all = " \
+        git://github.com/microchip-fpga-solutions/linux4polarfire.git;protocol=https;branch=linux-6.18-mchp+fpga+2026.04;name=linux4polarfire-explore;destsuffix=linux4polarfire-explore \
+"
+
+DRM_PATCHES_DIR = "${WORKDIR}/linux4polarfire-explore/drivers/gpu/drm/microchip/files/linux-6.18-2026.04/"
+V4L2_PATCHES_DIR = "${WORKDIR}/linux4polarfire-explore/drivers/media/files/linux-6.18-2026.04/"
+
+do_patch:append:mpfs-video-kit-all() {
+        for patch in ${V4L2_PATCHES_DIR}/*.patch; do
+                if [ -f "$patch" ]; then
+                        cd ${S}
+                        git am "$patch"
+                fi
+        done
+
+        for patch in ${DRM_PATCHES_DIR}/*.patch; do
+                if [ -f "$patch" ]; then
+                        cd ${S}
+                        git am "$patch"
+                fi
+        done
+}
+
