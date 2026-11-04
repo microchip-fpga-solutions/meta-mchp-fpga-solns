@@ -40,3 +40,7 @@ SRC_URI:append:mpfs-motor-control-kit-tsn = " \
     file://mpfs-tsn.cfg \
 "
 
+# Ensure the FIT image is only assembled after the device-tree overlays
+# have been deployed, so the FIT packaging step can pick them up.
+do_assemble_fitimage[depends] += "dt-overlay-mchp:do_deploy"
+
