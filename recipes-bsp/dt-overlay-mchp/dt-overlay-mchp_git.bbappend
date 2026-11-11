@@ -10,7 +10,7 @@ DT_FILES_PATH:mpfs-motor-control-kit = "${WORKDIR}/git/mpfs_motor_control"
 DT_FILES_PATH:mpfs-motor-control-kit-bldc = "${WORKDIR}/git/mpfs_motor_control"
 DT_FILES_PATH:mpfs-motor-control-kit-tsn = "${WORKDIR}/git/mpfs_motor_control"
 
-DTPOLARFIRE_SRC_URI = " git://git@bitbucket.microchip.com/fpga_pfsoc_sev_solutions/dt-overlay4polarfire.git;protocol=ssh;branch=linux4microchip-2026.04+fpga;destsuffix=git-dtpolarfire;name=dtpolarfire"
+DTPOLARFIRE_SRC_URI = " git://github.com/microchip-fpga-solutions/dt-overlay4polarfire.git;protocol=https;branch=linux4microchip-2026.04+fpga;destsuffix=git-dtpolarfire;name=dtpolarfire"
 DTPOLARFIRE_SRCREV = "72d8c5ab177e68f7ec3e134392b4bcc2e44688ae"
 
 SRCREV_FORMAT = "dtpolarfire"
@@ -21,7 +21,7 @@ SRC_URI:append:mpfs-motor-control-kit-tsn = "${DTPOLARFIRE_SRC_URI}"
 SRC_URI:append:mpfs-motor-control-kit-bldc = "${DTPOLARFIRE_SRC_URI}"
 
 do_copy_dtpolarfire_overlays() {
-    # Copy extra overlays from Bitbucket dt-overlay-mchp into the main source tree
+    # Copy extra overlays from dt-overlay4polarfire into the main source tree
     if [ -d "${WORKDIR}/git-dtpolarfire/mpfs_motor_control" ]; then
         mkdir -p ${S}/mpfs_motor_control
         cp -f ${WORKDIR}/git-dtpolarfire/mpfs_motor_control/* ${S}/mpfs_motor_control/
