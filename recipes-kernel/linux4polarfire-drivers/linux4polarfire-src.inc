@@ -4,5 +4,5 @@
 #   require ../linux4polarfire-drivers/linux4polarfire-src.inc
 #
 
-SRC_URI = "git://git@bitbucket.microchip.com/fpga_pfsoc_sev_solutions/linux4polarfire.git;protocol=ssh;branch=linux-6.18-mchp+fpga+2026.04"
-SRCREV = "d7152cbd93ed625b24bcf6535e614c99da272f7b"
+SRC_URI = "git://github.com/microchip-fpga-solutions/linux4polarfire.git;protocol=https;branch=linux-6.18-mchp+fpga+2026.04"
+SRCREV = "c28e45a89657cc386540a8b6f30bda136f343b1e"

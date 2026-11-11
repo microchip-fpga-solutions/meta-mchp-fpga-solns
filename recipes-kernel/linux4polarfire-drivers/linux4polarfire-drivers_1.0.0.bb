@@ -1,6 +1,6 @@
-HOMEPAGE = "https://bitbucket.microchip.com/projects/FPGA_PFSOC_SEV_SOLUTIONS/repos/linux-l4m"
+HOMEPAGE = "https://github.com/microchip-fpga-solutions/linux4polarfire"
 SUMMARY = "Microchip PolarFire FPGA out-of-tree kernel drivers"
-DESCRIPTION = "Out-of-tree kernel modules from linux4polarfire (linux-l4m). \
+DESCRIPTION = "Out-of-tree kernel modules from linux4polarfire. \
 Auto-discovers all driver subdirectories containing a Makefile via \
 the top-level Makefile and builds them against the target kernel."
 

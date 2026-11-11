@@ -1,4 +1,4 @@
-HOMEPAGE = "https://bitbucket.microchip.com/projects/FPGA_PFSOC_SEV_SOLUTIONS/repos/linux4polarfire"
+HOMEPAGE = "https://github.com/microchip-fpga-solutions/linux4polarfire"
 SUMMARY = "Microchip PolarFire SoC Motor Control IIO out-of-tree kernel drivers"
 DESCRIPTION = "Out-of-tree IIO motor control drivers (ADC, PI controller, PWM, \
 rate limiter, sequencer manager, stepper theta) for mpfs-motor-control-kit-bldc, \
