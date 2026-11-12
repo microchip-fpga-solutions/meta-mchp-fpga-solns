@@ -29,6 +29,7 @@ RDEPENDS:packagegroup-mchp-apps:mpfs-video-kit-drm += "\
     mchp-fpga-solns-linux-apps-cam2display-zerocopy \
     mchp-fpga-solns-linux-apps-rgb-jpeg-capture \
     mchp-fpga-solns-linux-apps-drm-display-tests \
+    mchp-fpga-solns-linux-apps-drm-games \
 "
 
 RDEPENDS:packagegroup-mchp-apps:mpfs-motor-control-kit-tsn += "\

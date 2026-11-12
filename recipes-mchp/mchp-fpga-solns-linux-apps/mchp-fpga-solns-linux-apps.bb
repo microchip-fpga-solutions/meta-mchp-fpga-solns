@@ -57,6 +57,7 @@ PACKAGES = " \
     ${PN}-cam2display-zerocopy \
     ${PN}-rgb-jpeg-capture \
     ${PN}-drm-display-tests \
+    ${PN}-drm-games \
     ${PN}-motor-control-bldc \
 "
 
@@ -72,6 +73,7 @@ INSANE_SKIP:${PN}-gst-cam-display += "file-rdeps ldflags debug-files"
 INSANE_SKIP:${PN}-cam2display-zerocopy += "file-rdeps ldflags debug-files"
 INSANE_SKIP:${PN}-rgb-jpeg-capture += "file-rdeps ldflags debug-files"
 INSANE_SKIP:${PN}-drm-display-tests += "file-rdeps ldflags debug-files"
+INSANE_SKIP:${PN}-drm-games += "file-rdeps ldflags debug-files"
 INSANE_SKIP:${PN}-motor-control-bldc += "file-rdeps ldflags debug-files dev-so staticdev buildpaths"
 
 EXAMPLE_FILES:append:mpfs-video-kit-raw-bayer = "\
@@ -87,6 +89,7 @@ EXAMPLE_FILES:append:mpfs-video-kit-drm = "\
     multimedia/cam2display-zerocopy \
     multimedia/rgb-jpeg-capture \
     multimedia/drm-display-tests \
+    multimedia/drm-games \
     "
 
 EXAMPLE_FILES:append:mpfs-video-kit-tsn = "\
@@ -259,6 +262,7 @@ FILES:${PN}-gst-cam-display = "/opt/microchip/multimedia/gst-cam-display"
 FILES:${PN}-cam2display-zerocopy = "/opt/microchip/multimedia/cam2display-zerocopy"
 FILES:${PN}-rgb-jpeg-capture = "/opt/microchip/multimedia/rgb-jpeg-capture"
 FILES:${PN}-drm-display-tests = "/opt/microchip/multimedia/drm-display-tests"
+FILES:${PN}-drm-games = "/opt/microchip/multimedia/drm-games"
 FILES:${PN}-tsn = "/opt/microchip/tsn"
 FILES:${PN}-japll-pi-controller = "/opt/microchip/japll-pi-controller"
 FILES:${PN}-opcua = "/opt/microchip/opcua"
