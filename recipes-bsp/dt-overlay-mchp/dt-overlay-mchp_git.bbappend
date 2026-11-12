@@ -11,14 +11,16 @@ DT_FILES_PATH:mpfs-motor-control-kit-bldc = "${WORKDIR}/git/mpfs_motor_control"
 DT_FILES_PATH:mpfs-motor-control-kit-tsn = "${WORKDIR}/git/mpfs_motor_control"
 
 DTPOLARFIRE_SRC_URI = " git://github.com/microchip-fpga-solutions/dt-overlay4polarfire.git;protocol=https;branch=linux4microchip-2026.04+fpga;destsuffix=git-dtpolarfire;name=dtpolarfire"
-DTPOLARFIRE_SRCREV = "72d8c5ab177e68f7ec3e134392b4bcc2e44688ae"
+DTPOLARFIRE_SRCREV = "6d8c8bac7464ed28898e8218e2cd42aa2d43e8ad"
 
 SRCREV_FORMAT = "dtpolarfire"
 SRCREV_dtpolarfire:mpfs-motor-control-kit-tsn = "${DTPOLARFIRE_SRCREV}"
 SRCREV_dtpolarfire:mpfs-motor-control-kit-bldc = "${DTPOLARFIRE_SRCREV}"
+SRCREV_dtpolarfire:mpfs-video-kit-all = "${DTPOLARFIRE_SRCREV}"
 
 SRC_URI:append:mpfs-motor-control-kit-tsn = "${DTPOLARFIRE_SRC_URI}"
 SRC_URI:append:mpfs-motor-control-kit-bldc = "${DTPOLARFIRE_SRC_URI}"
+SRC_URI:append:mpfs-video-kit-all = "${DTPOLARFIRE_SRC_URI}"
 
 do_copy_dtpolarfire_overlays() {
     # Copy extra overlays from dt-overlay4polarfire into the main source tree
