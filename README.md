@@ -109,6 +109,36 @@ Replace `<tag>` with the Yocto release latest tag and the manifest required. For
   repo init -u https://github.com/microchip-fpga-solutions/meta-mchp-fpga-solns-manifest.git -b refs/tags/v2026.1 -m default.xml
   ```
 
+> **Building tags `v2026.1`, `v2026.1.1`, or `v2026.1.2`:** these tags fetch the kernel and/or
+> device-tree overlay sources from repositories that have been now renamed. A public copy of
+> the exact same sources is available under renamed repositories (`linux4polarfire-legacy`,
+> `dt-overlay4polarfire-legacy`). To build these tags, after `repo sync` manually edit the `SRC_URI`
+> in the two affected files before running `bitbake`:
+>
+> | Tag                               | File                                                       | Change `SRC_URI` from        | To                                 |
+> |-------------------------------------|-------------------------------------------------------------|-------------------------------|-------------------------------------|
+> | `v2026.1`, `v2026.1.1`, `v2026.1.2` | `meta-mchp-fpga-solns/recipes-kernel/linux/linux-mchp_6.%.bbappend`               | `linux4polarfire.git`         | `linux4polarfire-legacy.git`        |
+> | `v2026.1`, `v2026.1.1`, `v2026.1.2` | `meta-mchp-fpga-solns/recipes-bsp/dt-overlay-mchp/dt-overlay-mchp_git.bbappend`   | `dt-overlay4polarfire.git`    | `dt-overlay4polarfire-legacy.git`   |
+>
+> Only the repository name changes; keep the existing `KBRANCH`/`BRANCH` and `SRCREV` values in
+> both files unchanged. `v2026.0` is not affected (it does not override the kernel/dt-overlay
+> source repository), so no edit is needed for that tag.
+>
+> Example end-to-end flow for `v2026.1`:
+>
+> ```bash
+> repo init -u https://github.com/microchip-fpga-solutions/meta-mchp-fpga-solns-manifest.git -b refs/tags/v2026.1 -m default.xml
+> repo sync
+> # Edit meta-mchp-fpga-solns/recipes-kernel/linux/linux-mchp_6.%.bbappend:
+> #   SRC_URI = "git://github.com/microchip-fpga-solutions/linux4polarfire.git;protocol=https;branch=${KBRANCH}"
+> #   -> SRC_URI = "git://github.com/microchip-fpga-solutions/linux4polarfire-legacy.git;protocol=https;branch=${KBRANCH}"
+> # Edit meta-mchp-fpga-solns/recipes-bsp/dt-overlay-mchp/dt-overlay-mchp_git.bbappend:
+> #   SRC_URI = "git://github.com/microchip-fpga-solutions/dt-overlay4polarfire.git;protocol=https;branch=${BRANCH}"
+> #   -> SRC_URI = "git://github.com/microchip-fpga-solutions/dt-overlay4polarfire-legacy.git;protocol=https;branch=${BRANCH}"
+> source openembedded-core/oe-init-build-env
+> MACHINE=mpfs-video-kit-drm bitbake mchp-base-image
+> ```
+
 Replace `<branch>` with the Yocto release latest branch and the manifest required. For example:
 
   ```bash
