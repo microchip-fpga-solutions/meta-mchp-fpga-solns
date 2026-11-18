@@ -43,7 +43,12 @@ EXTRA_OEMAKE += "KERNEL_SRC=${STAGING_KERNEL_DIR} CONFIG_CORE1588_HWTSTAMP=m KCF
 
 do_install() {
     install -d ${D}${nonarch_base_libdir}/modules/${KERNEL_VERSION}/extra
-    for ko in $(find ${S}/drivers -name "*.ko"); do
+    # linux4polarfire (branch linux-6.18-mchp+fpga+2026.04) also carries
+    # drivers/iio/mpfs-mc/, built out-of-tree separately by the
+    # mpfs-mc-iio-drivers recipe. Scope this to the net/ethernet/microchip
+    # drivers only, so the two recipes don't both try to install the same
+    # files into the shared pkgdata area.
+    for ko in $(find ${S}/drivers/net/ethernet/microchip -name "*.ko"); do
         install -m 0644 ${ko} ${D}${nonarch_base_libdir}/modules/${KERNEL_VERSION}/extra/
     done
 
